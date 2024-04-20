@@ -13,7 +13,11 @@
 		69304D382BD2D3D100CA68A5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69304D372BD2D3D100CA68A5 /* Preview Assets.xcassets */; };
 		69304D402BD2D46500CA68A5 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D3F2BD2D46500CA68A5 /* AuthenticationService.swift */; };
 		69304D432BD2E78200CA68A5 /* BrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D422BD2E78200CA68A5 /* BrowserView.swift */; };
-		69304D472BD2EB3C00CA68A5 /* BrowserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D462BD2EB3C00CA68A5 /* BrowserViewModel.swift */; };
+		69304D472BD2EB3C00CA68A5 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D462BD2EB3C00CA68A5 /* AuthenticationViewModel.swift */; };
+		69304D492BD2FE2000CA68A5 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D482BD2FE2000CA68A5 /* KeychainService.swift */; };
+		69304D4C2BD2FF2300CA68A5 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 69304D4B2BD2FF2300CA68A5 /* KeychainAccess */; };
+		69304D4E2BD4362C00CA68A5 /* PKCEGeneratorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D4D2BD4362C00CA68A5 /* PKCEGeneratorService.swift */; };
+		69304D512BD44B0700CA68A5 /* TokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D502BD44B0700CA68A5 /* TokenResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +29,10 @@
 		69304D3F2BD2D46500CA68A5 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		69304D422BD2E78200CA68A5 /* BrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserView.swift; sourceTree = "<group>"; };
 		69304D442BD2E83A00CA68A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		69304D462BD2EB3C00CA68A5 /* BrowserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserViewModel.swift; sourceTree = "<group>"; };
+		69304D462BD2EB3C00CA68A5 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
+		69304D482BD2FE2000CA68A5 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		69304D4D2BD4362C00CA68A5 /* PKCEGeneratorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKCEGeneratorService.swift; sourceTree = "<group>"; };
+		69304D502BD44B0700CA68A5 /* TokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69304D4C2BD2FF2300CA68A5 /* KeychainAccess in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,6 +68,7 @@
 			children = (
 				69304D442BD2E83A00CA68A5 /* Info.plist */,
 				69304D302BD2D3D000CA68A5 /* iOS_Demo_App.swift */,
+				69304D4F2BD44AF700CA68A5 /* Models */,
 				69304D3E2BD2D45400CA68A5 /* Services */,
 				69304D452BD2EAD600CA68A5 /* ViewModels */,
 				69304D412BD2E77600CA68A5 /* Views */,
@@ -81,6 +90,8 @@
 			isa = PBXGroup;
 			children = (
 				69304D3F2BD2D46500CA68A5 /* AuthenticationService.swift */,
+				69304D482BD2FE2000CA68A5 /* KeychainService.swift */,
+				69304D4D2BD4362C00CA68A5 /* PKCEGeneratorService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -97,9 +108,17 @@
 		69304D452BD2EAD600CA68A5 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				69304D462BD2EB3C00CA68A5 /* BrowserViewModel.swift */,
+				69304D462BD2EB3C00CA68A5 /* AuthenticationViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		69304D4F2BD44AF700CA68A5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				69304D502BD44B0700CA68A5 /* TokenResponse.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,6 +137,9 @@
 			dependencies = (
 			);
 			name = "iOS-Demo-App";
+			packageProductDependencies = (
+				69304D4B2BD2FF2300CA68A5 /* KeychainAccess */,
+			);
 			productName = "iOS-Demo-App";
 			productReference = 69304D2D2BD2D3D000CA68A5 /* iOS-Demo-App.app */;
 			productType = "com.apple.product-type.application";
@@ -146,6 +168,9 @@
 				Base,
 			);
 			mainGroup = 69304D242BD2D3D000CA68A5;
+			packageReferences = (
+				69304D4A2BD2FF2300CA68A5 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+			);
 			productRefGroup = 69304D2E2BD2D3D000CA68A5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -173,10 +198,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				69304D402BD2D46500CA68A5 /* AuthenticationService.swift in Sources */,
-				69304D472BD2EB3C00CA68A5 /* BrowserViewModel.swift in Sources */,
+				69304D472BD2EB3C00CA68A5 /* AuthenticationViewModel.swift in Sources */,
 				69304D332BD2D3D000CA68A5 /* ContentView.swift in Sources */,
 				69304D312BD2D3D000CA68A5 /* iOS_Demo_App.swift in Sources */,
+				69304D4E2BD4362C00CA68A5 /* PKCEGeneratorService.swift in Sources */,
 				69304D432BD2E78200CA68A5 /* BrowserView.swift in Sources */,
+				69304D492BD2FE2000CA68A5 /* KeychainService.swift in Sources */,
+				69304D512BD44B0700CA68A5 /* TokenResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,6 +412,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		69304D4A2BD2FF2300CA68A5 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		69304D4B2BD2FF2300CA68A5 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 69304D4A2BD2FF2300CA68A5 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 69304D252BD2D3D000CA68A5 /* Project object */;
 }

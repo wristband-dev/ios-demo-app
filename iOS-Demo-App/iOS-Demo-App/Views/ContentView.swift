@@ -2,15 +2,14 @@ import SwiftUI
 
 
 struct ContentView: View {
-    @EnvironmentObject var browserViewModel: BrowserViewModel
+    @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
 
     var body: some View {
         VStack {
-            Text("Hello, world!")
             Button("Open Browser") {
-                browserViewModel.showBrowser = true
+                authenticationViewModel.showBrowser = true
             }
-            .sheet(isPresented: $browserViewModel.showBrowser) {
+            .sheet(isPresented: $authenticationViewModel.showBrowser) {
                 BrowserView()
             }
         }

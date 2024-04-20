@@ -2,18 +2,36 @@ import SwiftUI
 import SafariServices
 
 struct BrowserView: UIViewControllerRepresentable {
+    @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     
+    // Function to create the SFSafariViewController instance
     func makeUIViewController(context: UIViewControllerRepresentableContext<BrowserView>) -> SFSafariViewController {
-        let urlString = "https://customer1-iosdemoapp-donato.us.wristband.dev/api/v1/oauth2/authorize?client_id=mlnp6h6nwrdd3ptqfvsi6pbieu&response_type=code&redirect_uri=demoapp%3A%2F%2Fcallback&state=jcm2ejayovsgbgbpkihblu47&nonce=gbgbpkihblu47jcm2ejayovs&scope=openid+offline_access&code_challenge=v8Bh0vp3j9dbGNeotHaJDUDHl0bS8aNk2OMeiSLBoc4&code_challenge_method=S256"
         
-        guard let url = URL(string: urlString) else {
+        // Retrieve the code challenge, assumed to be constant or calculated elsewhere
+        let codeChallenge = "YKv1deRoOdUfGxuICEyd8oaf6UoG6A3u1QKFG26Ycws"
+        
+        // Building the URL string using the required parameters
+        if let clientId = authenticationViewModel.clientId, 
+            let appName = authenticationViewModel.appName,
+            let appVanityDomain = authenticationViewModel.appVanityDomain,
+            let tenantDomainName = authenticationViewModel.tenantDomainName {
             
-                
-            return SFSafariViewController(url: URL(string: urlString)!)
+            let urlString = "https://\(tenantDomainName)-\(appVanityDomain)/api/v1/oauth2/authorize?client_id=\(clientId)&response_type=code&redirect_uri=\(appName)%3A%2F%2Fcallback&state=jcm2ejayovsgbgbpkihblu47&nonce=gbgbpkihblu47jcm2ejayovs&scope=openid+offline_access&code_challenge=\(codeChallenge)&code_challenge_method=S256"
+            
+            // Check if the URL is valid
+            if let url = URL(string: urlString) {
+                // If URL is valid, return a SFSafariViewController with the URL
+                return SFSafariViewController(url: url)
+            }
         }
-        return SFSafariViewController(url: url)
+        
+        // Handle the invalid URL case by showing a blank SFSafariViewController or handling it in a better way
+        let blankURL = URL(string: "about:blank")!
+        let alertViewController = SFSafariViewController(url: blankURL)
+        return alertViewController // Returning a blank SFSafariViewController to avoid app crash
     }
     
+    // Required to conform to UIViewControllerRepresentable
     func updateUIViewController(_ uiViewController: SFSafariViewController, context: UIViewControllerRepresentableContext<BrowserView>) {
     }
 }

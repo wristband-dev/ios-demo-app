@@ -2,13 +2,15 @@ import SwiftUI
 
 @main
 struct iOS_Demo_App: App {
-    @StateObject var browserViewModel = BrowserViewModel()
+    @StateObject var authenticationViewModel = AuthenticationViewModel()
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(browserViewModel)
+                .environmentObject(authenticationViewModel)
                 .onOpenURL { url in
-                    browserViewModel.handleURL(url)
+                    Task {
+                        await authenticationViewModel.handleRedirectUri(url: url)
+                    }
                 }
         }
     }
