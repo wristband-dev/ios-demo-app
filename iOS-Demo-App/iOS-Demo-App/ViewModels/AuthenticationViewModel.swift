@@ -4,6 +4,7 @@ import Foundation
 class AuthenticationViewModel: ObservableObject {
     
     // Authentication view state
+    @Published var isLoading = true
     @Published var showAuthenticationView = false
     @Published var errorMsg: String?
     
@@ -44,29 +45,22 @@ class AuthenticationViewModel: ObservableObject {
         self.tokenResponse = await KeychainService.shared.getToken()
         
         _ = await getToken()
+        self.isLoading = false
     }
     
     
     func getToken() async -> String? {
-        if let tokenResponse, tokenResponse.isTokenExpired {
-            print("Token Expired, attempting refresh")
-            
-            do {
-                try await refreshToken(refreshToken: tokenResponse.refreshToken)
-                
-                print("refreshed")
-                return self.tokenResponse?.accessToken
-                
-            } catch {
-                
-                print("refresh token expired")
-                self.showAuthenticationView = true
-                return nil
-            }
-            
-        } else {
-            print("token not expired")
+        guard let tokenResponse, tokenResponse.isTokenExpired else  {
             return tokenResponse?.accessToken
+        }
+            
+        do {
+            try await refreshToken(refreshToken: tokenResponse.refreshToken)
+            return self.tokenResponse?.accessToken
+            
+        } catch {
+            self.showAuthenticationView = true
+            return nil
         }
     }
     
@@ -157,6 +151,17 @@ class AuthenticationViewModel: ObservableObject {
         self.codeVerifier = PKCEGeneratorService.shared.generateCodeVerifier()
         if let codeVerifier {
             self.codeChallenge = PKCEGeneratorService.shared.generateCodeChallenge(from: codeVerifier)
+        }
+    }
+    
+    
+    func logout() async {
+        if let appVanityDomain {
+            do {
+                try await AuthenticationService.shared.logout(appVanityDomain: appVanityDomain)
+            } catch {
+                print("Unable to logout user")
+            }
         }
     }
     

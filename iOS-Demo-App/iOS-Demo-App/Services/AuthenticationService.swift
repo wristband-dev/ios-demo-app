@@ -4,6 +4,7 @@ final class AuthenticationService {
 
     static let shared = AuthenticationService()
     
+    
     func getToken(appName: String, appVanityDomain: String, authCode: String, clientId: String, codeVerifier: String) async throws -> TokenResponse {
 
         guard let url = URL(string: "https://\(appVanityDomain)/api/v1/oauth2/token") else {
@@ -33,6 +34,7 @@ final class AuthenticationService {
         }
     }
     
+    
     func getRefreshToken(appVanityDomain: String, clientId: String, refreshToken: String) async throws -> TokenResponse {
 
         guard let url = URL(string: "https://\(appVanityDomain)/api/v1/oauth2/token") else {
@@ -61,4 +63,25 @@ final class AuthenticationService {
             throw error
         }
     }
+    
+    
+    func logout(appVanityDomain: String) async throws {
+        
+        guard let url = URL(string: "https://\(appVanityDomain)/api/v1/logout") else {
+            throw URLError(.badURL)
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.addValue("\(appVanityDomain)", forHTTPHeaderField: "Host")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            throw URLError(.badServerResponse)
+        }
+    }
+    
+    
 }

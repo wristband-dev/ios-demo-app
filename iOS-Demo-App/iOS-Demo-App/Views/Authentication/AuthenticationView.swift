@@ -6,7 +6,7 @@ struct AuthenticationView: View {
 
     var body: some View {
         VStack {
-
+            
             Button {
                 authenticationViewModel.showLoginBrowser = true
             } label: {
@@ -16,7 +16,7 @@ struct AuthenticationView: View {
                     .padding()
                     .frame(maxWidth: .infinity)
                     .foregroundColor(.white)
-                    .background(Color(red: 83/255, green: 101/255, blue: 167/255))
+                    .background(CustomColors.invoBlue)
                     .cornerRadius(8)
             }
             .sheet(isPresented: $authenticationViewModel.showLoginBrowser) {

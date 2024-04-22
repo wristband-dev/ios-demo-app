@@ -5,8 +5,11 @@ struct LandingView: View {
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
 
     var body: some View {
+        
         VStack {
-            if authenticationViewModel.showAuthenticationView {
+            if authenticationViewModel.isLoading {
+                ProgressView()
+            } else if authenticationViewModel.showAuthenticationView {
                 AuthenticationView()
             } else {
                 ContentView()
