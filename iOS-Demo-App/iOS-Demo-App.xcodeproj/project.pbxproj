@@ -19,6 +19,8 @@
 		69304D4E2BD4362C00CA68A5 /* PKCEGeneratorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D4D2BD4362C00CA68A5 /* PKCEGeneratorService.swift */; };
 		69304D512BD44B0700CA68A5 /* TokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D502BD44B0700CA68A5 /* TokenResponse.swift */; };
 		69304D532BD5845C00CA68A5 /* AppLoginBrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D522BD5845C00CA68A5 /* AppLoginBrowserView.swift */; };
+		69304D5B2BD6D80D00CA68A5 /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D5A2BD6D80D00CA68A5 /* LandingView.swift */; };
+		69304D5D2BD6D85E00CA68A5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D5C2BD6D85E00CA68A5 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		69304D4D2BD4362C00CA68A5 /* PKCEGeneratorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKCEGeneratorService.swift; sourceTree = "<group>"; };
 		69304D502BD44B0700CA68A5 /* TokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenResponse.swift; sourceTree = "<group>"; };
 		69304D522BD5845C00CA68A5 /* AppLoginBrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLoginBrowserView.swift; sourceTree = "<group>"; };
+		69304D5A2BD6D80D00CA68A5 /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
+		69304D5C2BD6D85E00CA68A5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,9 +105,8 @@
 		69304D412BD2E77600CA68A5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				69304D522BD5845C00CA68A5 /* AppLoginBrowserView.swift */,
-				69304D322BD2D3D000CA68A5 /* AuthenticationView.swift */,
-				69304D422BD2E78200CA68A5 /* TenantLoginBrowserView.swift */,
+				69304D5C2BD6D85E00CA68A5 /* ContentView.swift */,
+				69304D5E2BD6D87D00CA68A5 /* Authentication */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -122,6 +125,25 @@
 				69304D502BD44B0700CA68A5 /* TokenResponse.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		69304D5E2BD6D87D00CA68A5 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				69304D322BD2D3D000CA68A5 /* AuthenticationView.swift */,
+				69304D5A2BD6D80D00CA68A5 /* LandingView.swift */,
+				69304D5F2BD6D88700CA68A5 /* BrowserLoginViews */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		69304D5F2BD6D88700CA68A5 /* BrowserLoginViews */ = {
+			isa = PBXGroup;
+			children = (
+				69304D522BD5845C00CA68A5 /* AppLoginBrowserView.swift */,
+				69304D422BD2E78200CA68A5 /* TenantLoginBrowserView.swift */,
+			);
+			path = BrowserLoginViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,11 +223,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				69304D402BD2D46500CA68A5 /* AuthenticationService.swift in Sources */,
+				69304D5D2BD6D85E00CA68A5 /* ContentView.swift in Sources */,
 				69304D532BD5845C00CA68A5 /* AppLoginBrowserView.swift in Sources */,
 				69304D472BD2EB3C00CA68A5 /* AuthenticationViewModel.swift in Sources */,
 				69304D332BD2D3D000CA68A5 /* AuthenticationView.swift in Sources */,
 				69304D312BD2D3D000CA68A5 /* iOS_Demo_App.swift in Sources */,
 				69304D4E2BD4362C00CA68A5 /* PKCEGeneratorService.swift in Sources */,
+				69304D5B2BD6D80D00CA68A5 /* LandingView.swift in Sources */,
 				69304D432BD2E78200CA68A5 /* TenantLoginBrowserView.swift in Sources */,
 				69304D492BD2FE2000CA68A5 /* KeychainService.swift in Sources */,
 				69304D512BD44B0700CA68A5 /* TokenResponse.swift in Sources */,
