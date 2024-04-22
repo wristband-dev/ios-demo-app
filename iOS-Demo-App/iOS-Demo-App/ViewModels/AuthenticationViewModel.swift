@@ -3,43 +3,109 @@ import Foundation
 @MainActor
 class AuthenticationViewModel: ObservableObject {
     
-    @Published var showBrowser = true
-    
+    // Info.plsy
     @Published var appName: String?
     @Published var appVanityDomain: String?
     @Published var clientId: String?
-    @Published var tenantDomainName: String?
     
+    // Login Browser
+    @Published var showBrowser = true
+    @Published var tenantDomainName: String?
+    @Published var loginHint: String?
+    
+    // PKCE
+    @Published var codeVerifier: String?
+    @Published var codeChallenge: String?
+    
+    // Response Token
     @Published var tokenResponse: TokenResponse? = nil
+    @Published var tokenExpirationDate: Date? = nil
     
     init() {
         self.appName = Bundle.main.infoDictionary?["APP_NAME"] as? String
         self.appVanityDomain = Bundle.main.infoDictionary?["APPLICATION_VANITY_DOMAIN"] as? String
         self.clientId = Bundle.main.infoDictionary?["CLIENT_ID"] as? String
-        self.tenantDomainName = Bundle.main.infoDictionary?["TENANT_DOMAIN_NAME"] as? String
+        generatePKCE()
+        startUp()
+    }
+    
+    var isUserAuthenticated: Bool {
+        
+        if tokenResponse != nil , let tokenExpirationDate, Date() < tokenExpirationDate {
+            return true
+        }
+        return false
+    }
+    
+    func startUp() {
+
+        // if token is saved
+        if let savedToken = KeychainService.shared.getToken() {
+            self.tokenResponse = savedToken
+        }
+        
     }
     
     func handleRedirectUri(url: URL) async {
         
-        guard url.scheme == self.appName, url.host == "callback" else {
+        guard url.scheme == self.appName else {
             return
         }
         
         // get components from url
         let components = URLComponents(url: url, resolvingAgainstBaseURL: true)
         
-        // get auth code from url
-        if let code = components?.queryItems?.first(where: { $0.name == "code" })?.value,
-           let appName, let appVanityDomain, let clientId {
+        if url.host == "login" {
+            // get tenant_domain
+            if let tenantDomain = components?.queryItems?.first(where: { $0.name == "tenant_domain" })?.value,
+               let loginHint = components?.queryItems?.first(where: { $0.name == "login_hint" })?.value {
+                self.tenantDomainName = tenantDomain
+                self.loginHint = loginHint
+            }
+            
+        } else if url.host == "callback" {
+            // get code
+            if let code = components?.queryItems?.first(where: { $0.name == "code" })?.value {
+                await createToken(code: code)
+            }
+            
+        }
+           
+    }
+    
+    func createToken(code: String) async {
+        if let appName, let appVanityDomain, let clientId, let codeVerifier {
+            
             do {
                 // get token
-                self.tokenResponse = try await AuthenticationService.shared.getToken(appName: appName, appVanityDomain: appVanityDomain, authCode: code, clientId: clientId)
-                print(tokenResponse)
+                self.tokenResponse = try await AuthenticationService.shared.getToken(appName: appName, appVanityDomain: appVanityDomain, authCode: code, clientId: clientId, codeVerifier: codeVerifier)
+                
+                // save token to keychain
+                if let tokenResponse {
+                    KeychainService.shared.saveToken(tokenResponse: tokenResponse)
+                }
+
+                if let expiresIn = tokenResponse?.expiresIn {
+                    self.tokenExpirationDate = Date().addingTimeInterval(TimeInterval(expiresIn))
+                }
+
                 // close browser
                 self.showBrowser = false
+                
             } catch {
                 print("Unable to get token: \(error)")
             }
+        }
+    }
+    
+    func refreshToken() {
+        
+    }
+    
+    func generatePKCE() {
+        self.codeVerifier = PKCEGeneratorService.shared.generateCodeVerifier()
+        if let codeVerifier {
+            self.codeChallenge = PKCEGeneratorService.shared.generateCodeChallenge(from: codeVerifier)
         }
     }
 }

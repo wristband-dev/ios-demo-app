@@ -5,7 +5,7 @@ struct iOS_Demo_App: App {
     @StateObject var authenticationViewModel = AuthenticationViewModel()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AuthenticationView()
                 .environmentObject(authenticationViewModel)
                 .onOpenURL { url in
                     Task {

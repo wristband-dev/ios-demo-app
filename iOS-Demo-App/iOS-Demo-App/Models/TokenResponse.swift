@@ -1,9 +1,9 @@
 import Foundation
 
-struct TokenResponse: Decodable {
+struct TokenResponse: Decodable, Equatable {
     let accessToken: String
     let expiresIn: Int
-    let refreshToken: String?
+    let refreshToken: String
 
     enum CodingKeys: String, CodingKey {
         case accessToken = "access_token"
