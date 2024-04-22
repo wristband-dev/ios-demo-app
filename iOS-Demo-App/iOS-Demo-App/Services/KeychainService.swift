@@ -20,7 +20,7 @@ final class KeychainService {
         }
     }
     
-    func getToken() -> TokenResponse? {
+    func getToken() async -> TokenResponse? {
         let access_token = getString(name: "access_token")
         let expires_in = getString(name: "expires_in")
         let refresh_token = getString(name: "refresh_token")

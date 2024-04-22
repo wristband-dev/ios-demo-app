@@ -4,9 +4,9 @@ import SwiftUI
 struct AuthenticationView: View {
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
 
-
     var body: some View {
         VStack {
+
             Button {
                 authenticationViewModel.showLoginBrowser = true
             } label: {
@@ -16,7 +16,7 @@ struct AuthenticationView: View {
                     .padding()
                     .frame(maxWidth: .infinity)
                     .foregroundColor(.white)
-                    .background(.black)
+                    .background(Color(red: 83/255, green: 101/255, blue: 167/255))
                     .cornerRadius(8)
             }
             .sheet(isPresented: $authenticationViewModel.showLoginBrowser) {
@@ -26,20 +26,29 @@ struct AuthenticationView: View {
                     TenantLoginBrowserView()
                 }
             }
+            
             if let errorMsg = authenticationViewModel.errorMsg {
                 Text(errorMsg)
                     .bold()
                     .foregroundColor(.red)
             }
             Spacer()
+            
+            HStack {
+                Image("logo")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(height: 50)
+                Spacer()
+            }
         }
-        .navigationTitle("Wristband")
         .padding()
+        .navigationTitle("Invotastic")
     }
 }
 
 
-struct ContentView_Previews: PreviewProvider {
+struct AuthenticationView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
             AuthenticationView()

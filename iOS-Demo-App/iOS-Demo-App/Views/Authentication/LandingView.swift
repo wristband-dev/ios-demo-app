@@ -5,10 +5,17 @@ struct LandingView: View {
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
 
     var body: some View {
-        if authenticationViewModel.showAuthenticationView {
-            AuthenticationView()
-        } else {
-            ContentView()
+        VStack {
+            if authenticationViewModel.showAuthenticationView {
+                AuthenticationView()
+            } else {
+                ContentView()
+            }
+        }
+        .onAppear {
+            Task {
+                await authenticationViewModel.getStoredToken()
+            }
         }
     }
 }

@@ -5,6 +5,14 @@ struct TokenResponse: Decodable, Equatable {
     let expiresIn: Int
     let refreshToken: String
     var tokenExpirationDate: Date?
+    
+    var isTokenExpired: Bool {
+        if let tokenExpirationDate {
+            return tokenExpirationDate <= Date()
+        } else {
+            return true
+        }
+    }
 
     enum CodingKeys: String, CodingKey {
         case accessToken = "access_token"
