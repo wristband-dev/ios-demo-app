@@ -6,30 +6,42 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-        
-            if let currentUser = usersViewModel.currentUser {
-                Text(currentUser.email)
+            
+            ForEach(usersViewModel.users) { user in
+                Text(user.email)
             }
             
         }
         .onAppear {
-            Task {
-                if let token = await authenticationViewModel.getToken(), let appVanityDomain = authenticationViewModel.appVanityDomain {
-                    await usersViewModel.loadCurrentUser(appVanityDomain: appVanityDomain, token: token)
-                }
-            }
+//            Task {
+//                if let token = await authenticationViewModel.getToken(), 
+//                    let appVanityDomain = authenticationViewModel.appVanityDomain,
+//                    let appId = authenticationViewModel.appId {
+//                    
+//                    print(Date())
+//                    print(authenticationViewModel.tokenResponse?.tokenExpirationDate)
+//                    await usersViewModel.loadUsers(appId: appId, appVanityDomain: appVanityDomain, token: token)
+//                }
+//            }
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                NavigationLink {
-                    SettingsView()
-                } label: {
+                NavigationLink (value: "Settings") {
                     Image(systemName: "gear")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(height: 25)
                         .foregroundColor(CustomColors.invoBlue)
                 }
+                
+            }
+        }
+        .navigationDestination(for: String.self) { destination in
+            switch destination {
+                case "Settings":
+                    SettingsView()
+                default:
+                    Text("Not Found")
             }
         }
     }

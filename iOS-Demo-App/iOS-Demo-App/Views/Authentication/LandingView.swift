@@ -5,7 +5,6 @@ struct LandingView: View {
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
 
     var body: some View {
-        
         VStack {
             if authenticationViewModel.isLoading {
                 ProgressView()

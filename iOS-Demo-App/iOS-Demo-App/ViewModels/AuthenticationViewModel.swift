@@ -1,15 +1,18 @@
 import Foundation
+import SwiftUI
 
 @MainActor
 class AuthenticationViewModel: ObservableObject {
     
     // Authentication view state
     @Published var isLoading = true
+    @Published var path = NavigationPath()
     @Published var showAuthenticationView = false
     @Published var errorMsg: String?
     
     // Info.plsy
     @Published var appName: String?
+    @Published var appId: String?
     @Published var appVanityDomain: String?
     @Published var clientId: String?
     
@@ -17,6 +20,9 @@ class AuthenticationViewModel: ObservableObject {
     @Published var showLoginBrowser = false
     @Published var tenantDomainName: String?
     @Published var loginHint: String?
+    
+    // Logout Browser
+    @Published var showLogOutBrowser = false
     
     // PKCE
     @Published var codeVerifier: String?
@@ -36,6 +42,7 @@ class AuthenticationViewModel: ObservableObject {
     
     func getInfoDictValues() {
         self.appName = Bundle.main.infoDictionary?["APP_NAME"] as? String
+        self.appId = Bundle.main.infoDictionary?["APP_ID"] as? String
         self.appVanityDomain = Bundle.main.infoDictionary?["APPLICATION_VANITY_DOMAIN"] as? String
         self.clientId = Bundle.main.infoDictionary?["CLIENT_ID"] as? String
     }
@@ -66,6 +73,8 @@ class AuthenticationViewModel: ObservableObject {
     
     
     func handleRedirectUri(url: URL) async {
+        
+        print(url)
         
         guard url.scheme == self.appName else {
             return
@@ -156,11 +165,19 @@ class AuthenticationViewModel: ObservableObject {
     
     
     func logout() async {
-        if let appVanityDomain {
+        
+        
+        
+        if let appVanityDomain, let clientId, let refreshToken =  tokenResponse?.refreshToken {
             do {
-                try await AuthenticationService.shared.logout(appVanityDomain: appVanityDomain)
+                try await AuthenticationService.shared.revokeToken(appVanityDomain: appVanityDomain, clientId: clientId, refreshToken: refreshToken)
+                
+                self.showLogOutBrowser = true
+                self.tokenResponse = nil
+                KeychainService.shared.deleteToken()
+                
             } catch {
-                print("Unable to logout user")
+                print("Unable to revoke token: \(error)")
             }
         }
     }

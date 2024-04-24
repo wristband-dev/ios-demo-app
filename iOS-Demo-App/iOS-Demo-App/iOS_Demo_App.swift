@@ -7,16 +7,17 @@ struct iOS_Demo_App: App {
     
     var body: some Scene {
         WindowGroup {
-            NavigationStack {
+            NavigationStack (path: $authenticationViewModel.path) {
                 LandingView()
             }
-            .environmentObject(authenticationViewModel)
-            .environmentObject(usersViewModel)
             .onOpenURL { url in
                 Task {
                     await authenticationViewModel.handleRedirectUri(url: url)
                 }
             }
         }
+        .environmentObject(authenticationViewModel)
+        .environmentObject(usersViewModel)
+        
     }
 }

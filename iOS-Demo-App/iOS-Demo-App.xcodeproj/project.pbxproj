@@ -26,6 +26,7 @@
 		69304D652BD6F9FB00CA68A5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D642BD6F9FB00CA68A5 /* User.swift */; };
 		69304D672BD724A800CA68A5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D662BD724A800CA68A5 /* SettingsView.swift */; };
 		69304D6A2BD724F400CA68A5 /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D692BD724F400CA68A5 /* CustomColors.swift */; };
+		6954F41C2BD99FAD0017373C /* LogoutBrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6954F41B2BD99FAD0017373C /* LogoutBrowserView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		69304D642BD6F9FB00CA68A5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		69304D662BD724A800CA68A5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		69304D692BD724F400CA68A5 /* CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
+		6954F41B2BD99FAD0017373C /* LogoutBrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutBrowserView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,7 +121,6 @@
 			children = (
 				69304D5C2BD6D85E00CA68A5 /* ContentView.swift */,
 				69304D5E2BD6D87D00CA68A5 /* Authentication */,
-				69304D662BD724A800CA68A5 /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -147,6 +148,7 @@
 			children = (
 				69304D322BD2D3D000CA68A5 /* AuthenticationView.swift */,
 				69304D5A2BD6D80D00CA68A5 /* LandingView.swift */,
+				69304D662BD724A800CA68A5 /* SettingsView.swift */,
 				69304D5F2BD6D88700CA68A5 /* BrowserLoginViews */,
 			);
 			path = Authentication;
@@ -157,6 +159,7 @@
 			children = (
 				69304D522BD5845C00CA68A5 /* AppLoginBrowserView.swift */,
 				69304D422BD2E78200CA68A5 /* TenantLoginBrowserView.swift */,
+				6954F41B2BD99FAD0017373C /* LogoutBrowserView.swift */,
 			);
 			path = BrowserLoginViews;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 				69304D632BD6F91000CA68A5 /* UsersService.swift in Sources */,
 				69304D532BD5845C00CA68A5 /* AppLoginBrowserView.swift in Sources */,
 				69304D472BD2EB3C00CA68A5 /* AuthenticationViewModel.swift in Sources */,
+				6954F41C2BD99FAD0017373C /* LogoutBrowserView.swift in Sources */,
 				69304D332BD2D3D000CA68A5 /* AuthenticationView.swift in Sources */,
 				69304D652BD6F9FB00CA68A5 /* User.swift in Sources */,
 				69304D312BD2D3D000CA68A5 /* iOS_Demo_App.swift in Sources */,

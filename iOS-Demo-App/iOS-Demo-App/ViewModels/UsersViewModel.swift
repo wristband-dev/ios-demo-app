@@ -4,14 +4,22 @@ import Foundation
 class UsersViewModel: ObservableObject {
     
     @Published var currentUser: User?
+    @Published var users: [User] = []
 
  
     func loadCurrentUser(appVanityDomain: String, token: String) async {
         do {
-            print("Starting load current user")
             self.currentUser = try await UsersService.shared.getCurrentUser(appVanityDomain: appVanityDomain, token:token)
         } catch {
             print("Unable to load current user: \(error)")
+        }
+    }
+    
+    func loadUsers(appId: String, appVanityDomain: String, token: String) async {
+        do {
+            self.currentUser = try await UsersService.shared.getUsers(appId: appId, appVanityDomain: appVanityDomain, token: token, start_index: 1, count: 50)
+        } catch {
+            print("Unable to load users: \(error)")
         }
     }
 }

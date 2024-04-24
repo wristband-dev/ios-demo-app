@@ -38,6 +38,17 @@ final class KeychainService {
         }
     }
     
+    func deleteToken() {
+        removeValue(name: "access_token")
+        removeValue(name: "expires_in")
+        removeValue(name: "refresh_token")
+        removeValue(name: "token_expiration_date")
+    }
+    
+    func removeValue(name: String) {
+        UserDefaults.standard.removeObject(forKey: name)
+    }
+    
     func saveString(name: String, value: String) {
         let keychain = Keychain(service: "iOS-Demo-App")
         do {
@@ -46,16 +57,16 @@ final class KeychainService {
             print("Error saving \(name): \(error)")
         }
     }
-
-    func getString(name: String) -> String? {
-        let keychain = Keychain(service: "iOS-Demo-App")
-        return try? keychain.get(name)
-    }
     
     func saveDate(name: String, date: Date) {
         let dateString = dateFormatter.string(from: date)
         saveString(name: name, value: dateString)
     }
+
+    func getString(name: String) -> String? {
+        let keychain = Keychain(service: "iOS-Demo-App")
+        return try? keychain.get(name)
+    }    
 
     func getDate(name: String) -> Date? {
         guard let dateString = getString(name: name) else {
