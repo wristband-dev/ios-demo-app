@@ -52,19 +52,29 @@ class AuthenticationViewModel: ObservableObject {
         self.tokenResponse = await KeychainService.shared.getToken()
         
         _ = await getToken()
+        
         self.isLoading = false
     }
     
     
     func getToken() async -> String? {
-        guard let tokenResponse, tokenResponse.isTokenExpired else  {
-            return tokenResponse?.accessToken
+        // if no token return nil and show auth
+        guard let tokenResponse else {
+            self.showAuthenticationView = true
+            return nil
+        }
+        
+        // if token is not expired return access token
+        guard tokenResponse.isTokenExpired else {
+            return tokenResponse.accessToken
         }
             
+        // if token expired, attempt to refresh token
         do {
             try await refreshToken(refreshToken: tokenResponse.refreshToken)
             return self.tokenResponse?.accessToken
             
+        // unable to refresh return nil and show auth screen
         } catch {
             self.showAuthenticationView = true
             return nil
@@ -73,8 +83,6 @@ class AuthenticationViewModel: ObservableObject {
     
     
     func handleRedirectUri(url: URL) async {
-        
-        print(url)
         
         guard url.scheme == self.appName else {
             return
@@ -166,15 +174,30 @@ class AuthenticationViewModel: ObservableObject {
     
     func logout() async {
         
-        
+        // get delete token to work
+        // add tenantDomainName to token Service -> load with token
+            // this goes to the logoutBrowser view -> uncomment code
         
         if let appVanityDomain, let clientId, let refreshToken =  tokenResponse?.refreshToken {
             do {
+                // revoke token
                 try await AuthenticationService.shared.revokeToken(appVanityDomain: appVanityDomain, clientId: clientId, refreshToken: refreshToken)
                 
+                // close logout browser
+                self.showLogOutBrowser = false
+                
+                // clear cookies
                 self.showLogOutBrowser = true
+                
+                // clear cached token
                 self.tokenResponse = nil
+                
+                // clear stored token
                 KeychainService.shared.deleteToken()
+                
+                // return to maain path
+                self.path.removeLast(self.path.count)
+                
                 
             } catch {
                 print("Unable to revoke token: \(error)")

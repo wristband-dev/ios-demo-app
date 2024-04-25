@@ -84,7 +84,6 @@ final class AuthenticationService {
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
             throw URLError(.badServerResponse)
         }
-        print("revoked")
     }
     
     

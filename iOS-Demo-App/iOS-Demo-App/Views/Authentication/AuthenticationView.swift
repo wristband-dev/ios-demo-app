@@ -7,25 +7,32 @@ struct AuthenticationView: View {
     var body: some View {
         VStack {
             
-            Button {
-                authenticationViewModel.showLoginBrowser = true
-            } label: {
-                Text("Login")
-                    .font(.title)
-                    .bold()
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .foregroundColor(.white)
-                    .background(CustomColors.invoBlue)
-                    .cornerRadius(8)
-            }
-            .sheet(isPresented: $authenticationViewModel.showLoginBrowser) {
-                if authenticationViewModel.tenantDomainName == nil {
-                    AppLoginBrowserView()
-                } else {
-                    TenantLoginBrowserView()
+            VStack {
+                HStack {
+                    Spacer()
+                    WristbandTouchPointView()
+                }
+                Button {
+                    authenticationViewModel.showLoginBrowser = true
+                } label: {
+                    Text("Login")
+                        .font(.title)
+                        .bold()
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .foregroundColor(.white)
+                        .background(CustomColors.invoBlue)
+                        .cornerRadius(8)
+                }
+                .sheet(isPresented: $authenticationViewModel.showLoginBrowser) {
+                    if authenticationViewModel.tenantDomainName == nil {
+                        AppLoginBrowserView()
+                    } else {
+                        TenantLoginBrowserView()
+                    }
                 }
             }
+            .padding([.trailing, .leading])
             
             if let errorMsg = authenticationViewModel.errorMsg {
                 Text(errorMsg)
@@ -50,8 +57,9 @@ struct AuthenticationView: View {
 
 struct AuthenticationView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationStack {
-            AuthenticationView()
-        }
+        let authenticationViewModel = AuthenticationViewModel()
+        
+        return NavigationStack {AuthenticationView()}
+            .environmentObject(authenticationViewModel)
     }
 }

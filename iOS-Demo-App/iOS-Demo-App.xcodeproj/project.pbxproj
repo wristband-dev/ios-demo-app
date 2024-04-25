@@ -27,6 +27,7 @@
 		69304D672BD724A800CA68A5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D662BD724A800CA68A5 /* SettingsView.swift */; };
 		69304D6A2BD724F400CA68A5 /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D692BD724F400CA68A5 /* CustomColors.swift */; };
 		6954F41C2BD99FAD0017373C /* LogoutBrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6954F41B2BD99FAD0017373C /* LogoutBrowserView.swift */; };
+		6954F41E2BD9D87A0017373C /* WristbandTouchPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6954F41D2BD9D87A0017373C /* WristbandTouchPointView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		69304D662BD724A800CA68A5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		69304D692BD724F400CA68A5 /* CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
 		6954F41B2BD99FAD0017373C /* LogoutBrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutBrowserView.swift; sourceTree = "<group>"; };
+		6954F41D2BD9D87A0017373C /* WristbandTouchPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WristbandTouchPointView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,8 @@
 			isa = PBXGroup;
 			children = (
 				69304D5C2BD6D85E00CA68A5 /* ContentView.swift */,
+				69304D662BD724A800CA68A5 /* SettingsView.swift */,
+				6954F41D2BD9D87A0017373C /* WristbandTouchPointView.swift */,
 				69304D5E2BD6D87D00CA68A5 /* Authentication */,
 			);
 			path = Views;
@@ -148,7 +152,6 @@
 			children = (
 				69304D322BD2D3D000CA68A5 /* AuthenticationView.swift */,
 				69304D5A2BD6D80D00CA68A5 /* LandingView.swift */,
-				69304D662BD724A800CA68A5 /* SettingsView.swift */,
 				69304D5F2BD6D88700CA68A5 /* BrowserLoginViews */,
 			);
 			path = Authentication;
@@ -262,6 +265,7 @@
 				69304D6A2BD724F400CA68A5 /* CustomColors.swift in Sources */,
 				69304D4E2BD4362C00CA68A5 /* PKCEGeneratorService.swift in Sources */,
 				69304D5B2BD6D80D00CA68A5 /* LandingView.swift in Sources */,
+				6954F41E2BD9D87A0017373C /* WristbandTouchPointView.swift in Sources */,
 				69304D432BD2E78200CA68A5 /* TenantLoginBrowserView.swift in Sources */,
 				69304D492BD2FE2000CA68A5 /* KeychainService.swift in Sources */,
 				69304D512BD44B0700CA68A5 /* TokenResponse.swift in Sources */,
