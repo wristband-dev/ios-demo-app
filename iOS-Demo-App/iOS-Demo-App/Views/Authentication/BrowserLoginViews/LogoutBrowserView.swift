@@ -13,11 +13,10 @@ struct LogoutBrowserView: UIViewControllerRepresentable {
 //        let tenantDomainName = authenticationViewModel.tenantDomainName {
             
             let urlString = "https://\("customer1")-\(appVanityDomain)/api/v1/logout?client_id=\(clientId)"
-            print(urlString)
             
             // Check if the URL is valid
             if let url = URL(string: urlString) {
-                // If URL is valid, return a SFSafariViewController with the URL
+                
                 return SFSafariViewController(url: url)
             }
         }

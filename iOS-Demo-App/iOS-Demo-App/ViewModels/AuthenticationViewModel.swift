@@ -7,7 +7,6 @@ class AuthenticationViewModel: ObservableObject {
     // Authentication view state
     @Published var isLoading = true
     @Published var path = NavigationPath()
-    @Published var showAuthenticationView = false
     @Published var errorMsg: String?
     
     // Info.plsy
@@ -60,7 +59,6 @@ class AuthenticationViewModel: ObservableObject {
     func getToken() async -> String? {
         // if no token return nil and show auth
         guard let tokenResponse else {
-            self.showAuthenticationView = true
             return nil
         }
         
@@ -76,7 +74,6 @@ class AuthenticationViewModel: ObservableObject {
             
         // unable to refresh return nil and show auth screen
         } catch {
-            self.showAuthenticationView = true
             return nil
         }
     }
@@ -87,19 +84,37 @@ class AuthenticationViewModel: ObservableObject {
         guard url.scheme == self.appName else {
             return
         }
-        
+
         // get components from url
         let components = URLComponents(url: url, resolvingAgainstBaseURL: true)
         
         if url.host == "login" {
             
             // get tenant_domain
-            if let tenantDomain = components?.queryItems?.first(where: { $0.name == "tenant_domain" })?.value,
-               let loginHint = components?.queryItems?.first(where: { $0.name == "login_hint" })?.value {
+            if let tenantDomain = components?.queryItems?.first(where: { $0.name == "tenant_domain" })?.value {
                 
+                // get info from login
                 self.tenantDomainName = tenantDomain
-                self.loginHint = loginHint
+                
+                // clear cached token
+                self.tokenResponse = nil
+                
+                // clear stored token
+                KeychainService.shared.deleteToken()
+                
+                // return to main path
+                self.path.removeLast(self.path.count)
+                
+                // close logout browser
+                self.showLogOutBrowser = false
+                
+                // generate pkce for tenant login
                 generatePKCE()
+            }
+            
+            if let loginHint = components?.queryItems?.first(where: { $0.name == "login_hint" })?.value {
+                
+                self.loginHint = loginHint
             }
             
         } else if url.host == "callback" {
@@ -133,7 +148,6 @@ class AuthenticationViewModel: ObservableObject {
 
                 // proceed to content view
                 self.showLoginBrowser = false
-                self.showAuthenticationView = false
                 
             } catch {
                 self.showLoginBrowser = false
@@ -174,31 +188,14 @@ class AuthenticationViewModel: ObservableObject {
     
     func logout() async {
         
-        // get delete token to work
-        // add tenantDomainName to token Service -> load with token
-            // this goes to the logoutBrowser view -> uncomment code
-        
         if let appVanityDomain, let clientId, let refreshToken =  tokenResponse?.refreshToken {
             do {
                 // revoke token
                 try await AuthenticationService.shared.revokeToken(appVanityDomain: appVanityDomain, clientId: clientId, refreshToken: refreshToken)
                 
-                // close logout browser
-                self.showLogOutBrowser = false
-                
                 // clear cookies
                 self.showLogOutBrowser = true
-                
-                // clear cached token
-                self.tokenResponse = nil
-                
-                // clear stored token
-                KeychainService.shared.deleteToken()
-                
-                // return to maain path
-                self.path.removeLast(self.path.count)
-                
-                
+
             } catch {
                 print("Unable to revoke token: \(error)")
             }

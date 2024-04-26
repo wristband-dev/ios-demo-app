@@ -47,6 +47,7 @@ struct SettingsView: View {
             Spacer()
         }
         .navigationTitle("Settings")
+        .navigationBarTitleDisplayMode(.inline)
         .padding()
         .onAppear {
             Task {
@@ -67,7 +68,7 @@ struct SettingsView_Previews: PreviewProvider {
         // Instantiate view models
         let authenticationViewModel = AuthenticationViewModel()
         
-        var usersViewModel = UsersViewModel()
+        let usersViewModel = UsersViewModel()
         usersViewModel.currentUser = User(
             email: "test@example.com",
             givenName: "Test Given Name",

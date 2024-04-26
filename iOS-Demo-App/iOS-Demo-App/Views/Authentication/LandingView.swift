@@ -8,7 +8,7 @@ struct LandingView: View {
         VStack {
             if authenticationViewModel.isLoading {
                 ProgressView()
-            } else if authenticationViewModel.showAuthenticationView {
+            } else if authenticationViewModel.tokenResponse == nil {
                 AuthenticationView()
             } else {
                 ContentView()
