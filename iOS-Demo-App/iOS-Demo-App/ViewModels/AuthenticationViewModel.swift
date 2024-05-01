@@ -121,6 +121,9 @@ class AuthenticationViewModel: ObservableObject {
             
             // get code
             if let code = components?.queryItems?.first(where: { $0.name == "code" })?.value {
+                
+                // verify state is the same as the one sent out
+                
                 await createToken(code: code)
             }
         }
@@ -144,8 +147,7 @@ class AuthenticationViewModel: ObservableObject {
                 if let tokenResponse {
                     KeychainService.shared.saveToken(tokenResponse: tokenResponse)
                 }
-
-
+                
                 // proceed to content view
                 self.showLoginBrowser = false
                 
@@ -177,12 +179,19 @@ class AuthenticationViewModel: ObservableObject {
         }
     }
     
-    
     func generatePKCE() {
         self.codeVerifier = PKCEGeneratorService.shared.generateCodeVerifier()
         if let codeVerifier {
             self.codeChallenge = PKCEGeneratorService.shared.generateCodeChallenge(from: codeVerifier)
         }
+    }
+    
+    func generateState() {
+        
+    }
+    
+    func generateNonce() {
+        
     }
     
     
