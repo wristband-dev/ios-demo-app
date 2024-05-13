@@ -17,6 +17,7 @@ struct LandingView: View {
         .onAppear {
             Task {
                 await authenticationViewModel.getStoredToken()
+                
             }
         }
     }

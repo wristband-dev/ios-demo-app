@@ -17,7 +17,7 @@ struct TenantLoginBrowserView: UIViewControllerRepresentable {
             // state -> transfer between auth and callback
             // 
             
-            var urlString = "https://\(tenantDomainName)-\(appVanityDomain)/api/v1/oauth2/authorize?client_id=\(clientId)&response_type=code&redirect_uri=\(appName)%3A%2F%2Fcallback&state=jcm2ejayovsgbgbpkihblu47&nonce=gbgbpkihblu47jcm2ejayovs&scope=openid+offline_access+profile+email&code_challenge=\(codeChallenge)&code_challenge_method=S256"
+            var urlString = "https://\(tenantDomainName)-\(appVanityDomain)/api/v1/oauth2/authorize?client_id=\(clientId)&response_type=code&redirect_uri=\(appName)%3A%2F%2Fcallback&state=jcm2ejayovsgbgbpkihblu47&nonce=gbgbpkihblu47jcm2ejayovs&scope=openid+offline_access+profile+email+phone&code_challenge=\(codeChallenge)&code_challenge_method=S256"
             
             if let loginHint = authenticationViewModel.loginHint {
                 urlString.append("&login_hint=\(loginHint)")

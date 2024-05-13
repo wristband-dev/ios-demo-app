@@ -50,7 +50,7 @@ class AuthenticationViewModel: ObservableObject {
     func getStoredToken() async {
         self.tokenResponse = await KeychainService.shared.getToken()
         
-        _ = await getToken()
+        let test = await getToken()
         
         self.isLoading = false
     }
@@ -61,7 +61,7 @@ class AuthenticationViewModel: ObservableObject {
         guard let tokenResponse else {
             return nil
         }
-        
+
         // if token is not expired return access token
         guard tokenResponse.isTokenExpired else {
             return tokenResponse.accessToken
@@ -71,9 +71,9 @@ class AuthenticationViewModel: ObservableObject {
         do {
             try await refreshToken(refreshToken: tokenResponse.refreshToken)
             return self.tokenResponse?.accessToken
-            
         // unable to refresh return nil and show auth screen
         } catch {
+            self.tokenResponse = nil
             return nil
         }
     }

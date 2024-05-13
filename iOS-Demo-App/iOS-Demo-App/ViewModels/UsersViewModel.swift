@@ -5,6 +5,9 @@ class UsersViewModel: ObservableObject {
     
     @Published var currentUser: User?
     @Published var users: [User] = []
+    
+    @Published var showErrorMessage: Bool = false
+    @Published var errorMessage: String = ""
 
  
     func loadCurrentUser(appVanityDomain: String, token: String) async {
@@ -13,6 +16,25 @@ class UsersViewModel: ObservableObject {
         } catch {
             print("Unable to load current user: \(error)")
         }
+    }
+    
+    func updateCurrentUser(appVanityDomain: String, token: String, newUser: UpdateUser) async {
+        do {
+            try await UsersService.shared.updateCurrentUser(appVanityDomain: appVanityDomain, token:token, user: newUser)
+            await mapToCurrentUser(updateUser: newUser)
+            self.showErrorMessage = false
+        } catch {
+            self.showErrorMessage = true
+            self.errorMessage = "Unable to update current user"
+            print("Unable to update current user: \(error)")
+        }
+    }
+
+    func mapToCurrentUser(updateUser: UpdateUser) async {
+        currentUser?.givenName = updateUser.givenName
+        currentUser?.familyName = updateUser.familyName
+        currentUser?.birthdate = updateUser.birthdate
+        currentUser?.phoneNumber = updateUser.phoneNumber
     }
     
     func loadUsers(appId: String, appVanityDomain: String, token: String) async {

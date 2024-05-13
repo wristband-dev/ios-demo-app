@@ -1,18 +1,41 @@
 import Foundation
 
-struct User: Decodable, Equatable, Identifiable {
-    let email: String
-    let givenName: String?
-    let id: String
-    let status: String?
-    let tenantId: String?
+struct User: Decodable, Equatable, Identifiable, Encodable {
+    var id: String
+    var appId: String?
+    var email: String
+    var emailVerified: Bool
+    var givenName: String?
+    var familyName: String?
+    var middleName: String?
+    var nickname: String?
+    var pictureUrl: String?
+    var gender: String?
+    var birthdate: String?
+    var locale: String
+    var timezone: String?
+    var phoneNumber: String?
+    var identityProviderName: String?
+    var tenantId: String?
+    var updatedAt: Int?
 
     enum CodingKeys: String, CodingKey {
-        case email = "email"
+        case id = "sub"
+        case appId = "app_id"
+        case email
+        case emailVerified = "email_verified"
         case givenName = "given_name"
-        case id = "app_id"
-        case status = "status"
-        case tenantId = "tenant_id"
+        case familyName = "family_name"
+        case middleName = "middle_name"
+        case nickname
+        case pictureUrl = "picture"
+        case phoneNumber = "phone_number"
+        case gender
+        case birthdate
+        case locale
+        case timezone = "zoneinfo"
+        case identityProviderName = "idp_name"
+        case tenantId = "tnt_id"
+        case updatedAt = "updated_at"
     }
 }
-

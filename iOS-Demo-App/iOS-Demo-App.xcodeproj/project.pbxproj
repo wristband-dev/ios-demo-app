@@ -24,10 +24,17 @@
 		69304D612BD6F4D600CA68A5 /* UsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D602BD6F4D600CA68A5 /* UsersViewModel.swift */; };
 		69304D632BD6F91000CA68A5 /* UsersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D622BD6F91000CA68A5 /* UsersService.swift */; };
 		69304D652BD6F9FB00CA68A5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D642BD6F9FB00CA68A5 /* User.swift */; };
-		69304D672BD724A800CA68A5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D662BD724A800CA68A5 /* SettingsView.swift */; };
+		69304D672BD724A800CA68A5 /* OldSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D662BD724A800CA68A5 /* OldSettingsView.swift */; };
 		69304D6A2BD724F400CA68A5 /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D692BD724F400CA68A5 /* CustomColors.swift */; };
 		6954F41C2BD99FAD0017373C /* LogoutBrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6954F41B2BD99FAD0017373C /* LogoutBrowserView.swift */; };
 		6954F41E2BD9D87A0017373C /* WristbandTouchPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6954F41D2BD9D87A0017373C /* WristbandTouchPointView.swift */; };
+		69B65F6E2BEB1F82001B9C08 /* ViewHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B65F6D2BEB1F82001B9C08 /* ViewHelpers.swift */; };
+		69B65F702BEB2471001B9C08 /* decodeAndPrintJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B65F6F2BEB2471001B9C08 /* decodeAndPrintJson.swift */; };
+		69B65F722BEC55A1001B9C08 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B65F712BEC55A1001B9C08 /* Settings.swift */; };
+		69B65F762BEDBC40001B9C08 /* UpdateUserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B65F752BEDBC40001B9C08 /* UpdateUserInfoView.swift */; };
+		69B65F782BEDBC57001B9C08 /* ChangeEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B65F772BEDBC57001B9C08 /* ChangeEmailView.swift */; };
+		69B65F7A2BEDBC7D001B9C08 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B65F792BEDBC7D001B9C08 /* ResetPasswordView.swift */; };
+		69B65FA22BF18A88001B9C08 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B65FA12BF18A88001B9C08 /* Functions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,10 +56,17 @@
 		69304D602BD6F4D600CA68A5 /* UsersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewModel.swift; sourceTree = "<group>"; };
 		69304D622BD6F91000CA68A5 /* UsersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersService.swift; sourceTree = "<group>"; };
 		69304D642BD6F9FB00CA68A5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		69304D662BD724A800CA68A5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		69304D662BD724A800CA68A5 /* OldSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldSettingsView.swift; sourceTree = "<group>"; };
 		69304D692BD724F400CA68A5 /* CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
 		6954F41B2BD99FAD0017373C /* LogoutBrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutBrowserView.swift; sourceTree = "<group>"; };
 		6954F41D2BD9D87A0017373C /* WristbandTouchPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WristbandTouchPointView.swift; sourceTree = "<group>"; };
+		69B65F6D2BEB1F82001B9C08 /* ViewHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHelpers.swift; sourceTree = "<group>"; };
+		69B65F6F2BEB2471001B9C08 /* decodeAndPrintJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = decodeAndPrintJson.swift; sourceTree = "<group>"; };
+		69B65F712BEC55A1001B9C08 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		69B65F752BEDBC40001B9C08 /* UpdateUserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoView.swift; sourceTree = "<group>"; };
+		69B65F772BEDBC57001B9C08 /* ChangeEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeEmailView.swift; sourceTree = "<group>"; };
+		69B65F792BEDBC7D001B9C08 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
+		69B65FA12BF18A88001B9C08 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,11 +102,11 @@
 			children = (
 				69304D442BD2E83A00CA68A5 /* Info.plist */,
 				69304D302BD2D3D000CA68A5 /* iOS_Demo_App.swift */,
+				69304D682BD724DD00CA68A5 /* Utilities */,
 				69304D4F2BD44AF700CA68A5 /* Models */,
 				69304D3E2BD2D45400CA68A5 /* Services */,
 				69304D452BD2EAD600CA68A5 /* ViewModels */,
 				69304D412BD2E77600CA68A5 /* Views */,
-				69304D682BD724DD00CA68A5 /* Utilities */,
 				69304D342BD2D3D100CA68A5 /* Assets.xcassets */,
 				69304D362BD2D3D100CA68A5 /* Preview Content */,
 			);
@@ -122,7 +136,8 @@
 			isa = PBXGroup;
 			children = (
 				69304D5C2BD6D85E00CA68A5 /* ContentView.swift */,
-				69304D662BD724A800CA68A5 /* SettingsView.swift */,
+				69304D662BD724A800CA68A5 /* OldSettingsView.swift */,
+				69B65F732BEDBC10001B9C08 /* Settings */,
 				6954F41D2BD9D87A0017373C /* WristbandTouchPointView.swift */,
 				69304D5E2BD6D87D00CA68A5 /* Authentication */,
 			);
@@ -171,8 +186,22 @@
 			isa = PBXGroup;
 			children = (
 				69304D692BD724F400CA68A5 /* CustomColors.swift */,
+				69B65F6F2BEB2471001B9C08 /* decodeAndPrintJson.swift */,
+				69B65FA12BF18A88001B9C08 /* Functions.swift */,
+				69B65F6D2BEB1F82001B9C08 /* ViewHelpers.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		69B65F732BEDBC10001B9C08 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				69B65F712BEC55A1001B9C08 /* Settings.swift */,
+				69B65F772BEDBC57001B9C08 /* ChangeEmailView.swift */,
+				69B65F752BEDBC40001B9C08 /* UpdateUserInfoView.swift */,
+				69B65F792BEDBC7D001B9C08 /* ResetPasswordView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,19 +280,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69304D672BD724A800CA68A5 /* SettingsView.swift in Sources */,
+				69304D672BD724A800CA68A5 /* OldSettingsView.swift in Sources */,
 				69304D402BD2D46500CA68A5 /* AuthenticationService.swift in Sources */,
 				69304D5D2BD6D85E00CA68A5 /* ContentView.swift in Sources */,
+				69B65F7A2BEDBC7D001B9C08 /* ResetPasswordView.swift in Sources */,
 				69304D632BD6F91000CA68A5 /* UsersService.swift in Sources */,
 				69304D532BD5845C00CA68A5 /* AppLoginBrowserView.swift in Sources */,
+				69B65F702BEB2471001B9C08 /* decodeAndPrintJson.swift in Sources */,
 				69304D472BD2EB3C00CA68A5 /* AuthenticationViewModel.swift in Sources */,
+				69B65F722BEC55A1001B9C08 /* Settings.swift in Sources */,
 				6954F41C2BD99FAD0017373C /* LogoutBrowserView.swift in Sources */,
 				69304D332BD2D3D000CA68A5 /* AuthenticationView.swift in Sources */,
 				69304D652BD6F9FB00CA68A5 /* User.swift in Sources */,
 				69304D312BD2D3D000CA68A5 /* iOS_Demo_App.swift in Sources */,
+				69B65FA22BF18A88001B9C08 /* Functions.swift in Sources */,
 				69304D612BD6F4D600CA68A5 /* UsersViewModel.swift in Sources */,
+				69B65F6E2BEB1F82001B9C08 /* ViewHelpers.swift in Sources */,
 				69304D6A2BD724F400CA68A5 /* CustomColors.swift in Sources */,
+				69B65F782BEDBC57001B9C08 /* ChangeEmailView.swift in Sources */,
 				69304D4E2BD4362C00CA68A5 /* PKCEGeneratorService.swift in Sources */,
+				69B65F762BEDBC40001B9C08 /* UpdateUserInfoView.swift in Sources */,
 				69304D5B2BD6D80D00CA68A5 /* LandingView.swift in Sources */,
 				6954F41E2BD9D87A0017373C /* WristbandTouchPointView.swift in Sources */,
 				69304D432BD2E78200CA68A5 /* TenantLoginBrowserView.swift in Sources */,
