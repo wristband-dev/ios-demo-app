@@ -47,6 +47,7 @@ struct SettingsView: View {
             Task {
                 if let token = await authenticationViewModel.getToken(), let appVanityDomain = authenticationViewModel.appVanityDomain {
                     await usersViewModel.loadCurrentUser(appVanityDomain: appVanityDomain, token: token)
+                    print(usersViewModel.currentUser)
                     self.loaded = true
                 }
             }

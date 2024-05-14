@@ -55,6 +55,7 @@ class UpdateUserViewModel: ObservableObject {
             self.familyName = familyName
         }
         if let birthdateString = currentUser.birthdate, let birthdate = stringToDate(birthdateString) {
+            self.showBirthdate = true
             self.birthdate = birthdate
         }
         if let phoneNumber = currentUser.phoneNumber {
@@ -65,9 +66,9 @@ class UpdateUserViewModel: ObservableObject {
     func getNewUser(currentUser: User) -> UpdateUserBody {
         var newUser = UpdateUserBody(
             id: currentUser.id,
-            givenName: self.givenName,
-            familyName: self.familyName,
-            phoneNumber:self.phoneNumber
+            givenName: self.givenName == "" ? nil : self.givenName,
+            familyName: self.familyName == "" ? nil : self.familyName,
+            phoneNumber: self.phoneNumber == "" ? nil : self.phoneNumber
         )
         
         if birthdateChanged(currentUser.birthdate) {
@@ -230,13 +231,13 @@ struct UpdateUserInfoView: View {
         }
     }
 }
-//
-//struct UpdateUserInfoView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        let currentUser = User(id: "1'", email: "fddiferd@gmail.com", emailVerified: true, givenName: "Donato", locale: "US")
-//
-//        return UpdateUserInfoView(currentUser: currentUser)
-//    }
-//}
+
+struct UpdateUserInfoView_Previews: PreviewProvider {
+    static var previews: some View {
+        let currentUser = User(id: "1'", email: "fddiferd@gmail.com", emailVerified: true, givenName: "Donato", birthdate: "1998-08-03", locale: "US")
+
+        return UpdateUserInfoView(currentUser: currentUser)
+    }
+}
 
 

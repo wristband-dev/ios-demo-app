@@ -35,6 +35,7 @@
 		69B65F782BEDBC57001B9C08 /* ChangeEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B65F772BEDBC57001B9C08 /* ChangeEmailView.swift */; };
 		69B65F7A2BEDBC7D001B9C08 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B65F792BEDBC7D001B9C08 /* ChangePasswordView.swift */; };
 		69B65FA22BF18A88001B9C08 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B65FA12BF18A88001B9C08 /* Functions.swift */; };
+		69B65FA52BF42A3F001B9C08 /* iPhoneNumberField in Frameworks */ = {isa = PBXBuildFile; productRef = 69B65FA42BF42A3F001B9C08 /* iPhoneNumberField */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +76,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				69304D4C2BD2FF2300CA68A5 /* KeychainAccess in Frameworks */,
+				69B65FA52BF42A3F001B9C08 /* iPhoneNumberField in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +224,7 @@
 			name = "iOS-Demo-App";
 			packageProductDependencies = (
 				69304D4B2BD2FF2300CA68A5 /* KeychainAccess */,
+				69B65FA42BF42A3F001B9C08 /* iPhoneNumberField */,
 			);
 			productName = "iOS-Demo-App";
 			productReference = 69304D2D2BD2D3D000CA68A5 /* iOS-Demo-App.app */;
@@ -253,6 +256,7 @@
 			mainGroup = 69304D242BD2D3D000CA68A5;
 			packageReferences = (
 				69304D4A2BD2FF2300CA68A5 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+				69B65FA32BF42A3F001B9C08 /* XCRemoteSwiftPackageReference "iPhoneNumberField" */,
 			);
 			productRefGroup = 69304D2E2BD2D3D000CA68A5 /* Products */;
 			projectDirPath = "";
@@ -522,6 +526,14 @@
 				kind = branch;
 			};
 		};
+		69B65FA32BF42A3F001B9C08 /* XCRemoteSwiftPackageReference "iPhoneNumberField" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MojtabaHs/iPhoneNumberField.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.10.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -529,6 +541,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 69304D4A2BD2FF2300CA68A5 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
 			productName = KeychainAccess;
+		};
+		69B65FA42BF42A3F001B9C08 /* iPhoneNumberField */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 69B65FA32BF42A3F001B9C08 /* XCRemoteSwiftPackageReference "iPhoneNumberField" */;
+			productName = iPhoneNumberField;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
