@@ -30,8 +30,8 @@ final class UsersService {
         }
     }
     
-    func updateCurrentUser(appVanityDomain: String, token: String, user: UpdateUser) async throws {
-
+    func updateCurrentUser(appVanityDomain: String, token: String, user: UpdateUserBody) async throws {
+        
         guard let url = URL(string: "https://\(appVanityDomain)/api/v1/users/\(user.id)?replace_custom_metadata=true") else {
             throw URLError(.badURL)
         }
@@ -46,30 +46,54 @@ final class UsersService {
         let postData = try encoder.encode(user)
         request.httpBody = postData
         
-//        encoder.outputFormatting = .prettyPrinted // This helps in making the JSON output more readable
-//
-//        do {
-//            let postData = try encoder.encode(user)
-//            request.httpBody = postData
-//            
-//            // Convert postData back to a String to print it
-//            if let jsonString = String(data: postData, encoding: .utf8) {
-//                print("Encoded JSON string:")
-//                print(jsonString)
-//            }
-//        } catch {
-//            print("Error encoding data: \(error)")
-//        }
+        //        encoder.outputFormatting = .prettyPrinted // This helps in making the JSON output more readable
+        //
+        //        do {
+        //            let postData = try encoder.encode(user)
+        //            request.httpBody = postData
+        //
+        //            // Convert postData back to a String to print it
+        //            if let jsonString = String(data: postData, encoding: .utf8) {
+        //                print("Encoded JSON string:")
+        //                print(jsonString)
+        //            }
+        //        } catch {
+        //            print("Error encoding data: \(error)")
+        //        }
         
-        let (data, response) = try await URLSession.shared.data(for: request)
+        let (_, response) = try await URLSession.shared.data(for: request)
         
-//        decodeAndPrintJson(data: data)
-//        print(response)
+        //        decodeAndPrintJson(data: data)
+        //        print(response)
         
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
             throw URLError(.badServerResponse)
         }
     }
+    
+    func changePassword(appVanityDomain: String, token: String, changePasswordBody: ChangePasswordBody) async throws {
+        
+        guard let url = URL(string: "https://\(appVanityDomain)/api/v1/change-password") else {
+            throw URLError(.badURL)
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("\(appVanityDomain)", forHTTPHeaderField: "Host")
+        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let encoder = JSONEncoder()
+        let postData = try encoder.encode(changePasswordBody)
+        request.httpBody = postData
+        
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            throw URLError(.badServerResponse)
+        }
+    }
+    
     
     func getUsers(appId: String, appVanityDomain: String, token: String, start_index: Int, count: Int) async throws -> User {
 
@@ -89,6 +113,7 @@ final class UsersService {
         let (data, response) = try await URLSession.shared.data(for: request)
         
         print(response)
+        decodeAndPrintJson(data: data)
         
         guard let httpResponse = response as? HTTPURLResponse else {
             throw URLError(.badServerResponse)

@@ -33,7 +33,7 @@
 		69B65F722BEC55A1001B9C08 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B65F712BEC55A1001B9C08 /* Settings.swift */; };
 		69B65F762BEDBC40001B9C08 /* UpdateUserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B65F752BEDBC40001B9C08 /* UpdateUserInfoView.swift */; };
 		69B65F782BEDBC57001B9C08 /* ChangeEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B65F772BEDBC57001B9C08 /* ChangeEmailView.swift */; };
-		69B65F7A2BEDBC7D001B9C08 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B65F792BEDBC7D001B9C08 /* ResetPasswordView.swift */; };
+		69B65F7A2BEDBC7D001B9C08 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B65F792BEDBC7D001B9C08 /* ChangePasswordView.swift */; };
 		69B65FA22BF18A88001B9C08 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B65FA12BF18A88001B9C08 /* Functions.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,7 +65,7 @@
 		69B65F712BEC55A1001B9C08 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		69B65F752BEDBC40001B9C08 /* UpdateUserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoView.swift; sourceTree = "<group>"; };
 		69B65F772BEDBC57001B9C08 /* ChangeEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeEmailView.swift; sourceTree = "<group>"; };
-		69B65F792BEDBC7D001B9C08 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
+		69B65F792BEDBC7D001B9C08 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 		69B65FA12BF18A88001B9C08 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -199,7 +199,7 @@
 				69B65F712BEC55A1001B9C08 /* Settings.swift */,
 				69B65F772BEDBC57001B9C08 /* ChangeEmailView.swift */,
 				69B65F752BEDBC40001B9C08 /* UpdateUserInfoView.swift */,
-				69B65F792BEDBC7D001B9C08 /* ResetPasswordView.swift */,
+				69B65F792BEDBC7D001B9C08 /* ChangePasswordView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -283,7 +283,7 @@
 				69304D672BD724A800CA68A5 /* OldSettingsView.swift in Sources */,
 				69304D402BD2D46500CA68A5 /* AuthenticationService.swift in Sources */,
 				69304D5D2BD6D85E00CA68A5 /* ContentView.swift in Sources */,
-				69B65F7A2BEDBC7D001B9C08 /* ResetPasswordView.swift in Sources */,
+				69B65F7A2BEDBC7D001B9C08 /* ChangePasswordView.swift in Sources */,
 				69304D632BD6F91000CA68A5 /* UsersService.swift in Sources */,
 				69304D532BD5845C00CA68A5 /* AppLoginBrowserView.swift in Sources */,
 				69B65F702BEB2471001B9C08 /* decodeAndPrintJson.swift in Sources */,

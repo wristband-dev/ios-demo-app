@@ -21,7 +21,7 @@ struct SettingsView: View {
                     Divider()
                     VStack {
                         subHeaderView(subHeader: "Change Password")
-                        ResetPasswordView()
+                        ChangePasswordView(currentUser: currentUser)
                     }
                     Divider()
                     Button {

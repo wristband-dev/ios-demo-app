@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct UpdateUser: Encodable {
+struct UpdateUserBody: Encodable {
     var id: String
     var givenName: String?
     var familyName: String?
@@ -35,6 +35,18 @@ class UpdateUserViewModel: ObservableObject {
     @Published var showBirthdate: Bool = false
     @Published var birthdate: Date = Date()
     
+    @Published var showErrorMessage: Bool = false
+    
+    func updateCurrentUser(appVanityDomain: String, token: String, newUser: UpdateUserBody) async {
+        do {
+            try await UsersService.shared.updateCurrentUser(appVanityDomain: appVanityDomain, token:token, user: newUser)
+            self.showErrorMessage = false
+        } catch {
+            self.showErrorMessage = true
+            print("Unable to update current user: \(error)")
+        }
+    }
+    
     func setUser(currentUser: User) {
         if let givenName = currentUser.givenName {
             self.givenName = givenName
@@ -50,8 +62,8 @@ class UpdateUserViewModel: ObservableObject {
         }
     }
     
-    func getNewUser(currentUser: User) -> UpdateUser {
-        var newUser = UpdateUser(
+    func getNewUser(currentUser: User) -> UpdateUserBody {
+        var newUser = UpdateUserBody(
             id: currentUser.id,
             givenName: self.givenName,
             familyName: self.familyName,
@@ -140,8 +152,8 @@ struct UpdateUserInfoView: View {
                     TextField("Last Name", text: $updateUserViewModel.familyName)
                         .defaultTextFieldStyle()
                 }
-                if usersViewModel.showErrorMessage {
-                    Text(usersViewModel.errorMessage)
+                if updateUserViewModel.showErrorMessage {
+                    Text("Unable to update current user")
                         .foregroundColor(.red)
                         .italic()
                         .bold()
@@ -152,7 +164,8 @@ struct UpdateUserInfoView: View {
                             if let token = await authenticationViewModel.getToken(), let appVanityDomain = authenticationViewModel.appVanityDomain {
                                 let newUser = updateUserViewModel.getNewUser(currentUser: currentUser)
 
-                                await usersViewModel.updateCurrentUser(appVanityDomain: appVanityDomain, token: token, newUser: newUser)
+                                await updateUserViewModel.updateCurrentUser(appVanityDomain: appVanityDomain, token: token, newUser: newUser)
+                                await usersViewModel.updateCurrentUser(updateUser: newUser)
                             }
                         }
                     }, label: {
@@ -201,7 +214,6 @@ struct UpdateUserInfoView: View {
                 Text("Birthdate")
                     .font(.title3)
                     .bold()
-                
                 if updateUserViewModel.showBirthdate {
                     DatePicker(
                         "",
@@ -218,13 +230,13 @@ struct UpdateUserInfoView: View {
         }
     }
 }
-
-struct UpdateUserInfoView_Previews: PreviewProvider {
-    static var previews: some View {
-        let currentUser = User(id: "1'", email: "fddiferd@gmail.com", emailVerified: true, givenName: "Donato", locale: "US")
-
-        return UpdateUserInfoView(currentUser: currentUser)
-    }
-}
+//
+//struct UpdateUserInfoView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let currentUser = User(id: "1'", email: "fddiferd@gmail.com", emailVerified: true, givenName: "Donato", locale: "US")
+//
+//        return UpdateUserInfoView(currentUser: currentUser)
+//    }
+//}
 
 
