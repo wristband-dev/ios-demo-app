@@ -1,9 +1,33 @@
 import SwiftUI
 
+struct ChangeEmailBody: Encodable {
+    var userId: String
+    var newEmail: String
+}
+
 @MainActor
 class ChangeEmailViewModel: ObservableObject {
     @Published var currentEmail: String = ""
     @Published var newEmail: String = ""
+    
+    @Published var showErrorMessage: Bool = false
+    @Published var showSuccessMessage: Bool = false
+    
+    func changeEmail(appVanityDomain: String, token: String, changeEmailBody: ChangeEmailBody) async {
+        do {
+            try await UsersService.shared.changeEmail(appVanityDomain: appVanityDomain, token: token, changeEmailBody: changeEmailBody)
+            self.newEmail = ""
+            self.showSuccessMessage = true
+            self.showErrorMessage = false
+        } catch {
+            self.showErrorMessage = true
+            print("Unable to change password: \(error)")
+        }
+    }
+    
+    func getChangeEmailBody(userId: String) -> ChangeEmailBody {
+        return ChangeEmailBody(userId: userId, newEmail: self.newEmail)
+    }
     
     func emailChanged(email: String) -> Bool {
         return email != self.newEmail
@@ -28,13 +52,37 @@ struct ChangeEmailView: View {
         VStack {            
             TextField("Current Email", text: $changeEmailViewModel.currentEmail)
                 .defaultTextFieldStyle()
-            TextField("New Email", text: $changeEmailViewModel.newEmail)
-                .defaultTextFieldStyle()
-
+            HStack {
+                TextField("New Email", text: $changeEmailViewModel.newEmail)
+                    .defaultTextFieldStyle()
+                if changeEmailViewModel.newEmail != "" {
+                    let validEmail = changeEmailViewModel.isValidEmail()
+                    Image(systemName: (validEmail ? "checkmark" : "x") + ".circle.fill")
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                        .foregroundColor(validEmail ? .green : .red)
+                }
+            }
+            if changeEmailViewModel.showErrorMessage {
+                Text("Unable to change email")
+                    .foregroundColor(.red)
+                    .italic()
+                    .bold()
+            }
+            if changeEmailViewModel.showSuccessMessage {
+                Text("Email reset sent to new email")
+                    .foregroundColor(.green)
+                    .italic()
+                    .bold()
+            }
             if changeEmailViewModel.emailChanged(email: currentUser.email), changeEmailViewModel.isValidEmail() {
                 Button(action: {
                     Task {
-                       
+                        if let token = await authenticationViewModel.getToken(), let appVanityDomain = authenticationViewModel.appVanityDomain {
+                            let changeEmailBody = changeEmailViewModel.getChangeEmailBody(userId: currentUser.id)
+                            await changeEmailViewModel.changeEmail(appVanityDomain:appVanityDomain, token:token, changeEmailBody: changeEmailBody)
+                            
+                        }
                     }
                 }, label: {
                     Text("Change Email")

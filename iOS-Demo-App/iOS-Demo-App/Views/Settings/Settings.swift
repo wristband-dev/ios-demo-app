@@ -5,45 +5,49 @@ struct SettingsView: View {
     @EnvironmentObject var usersViewModel: UsersViewModel
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     
+    @State var loaded: Bool = false
+    
     var body: some View {
         ScrollView {
-             VStack (spacing: 32) {
-                if let currentUser = usersViewModel.currentUser {
-                    VStack {
-                        subHeaderView(subHeader: "User Info")
-                        UpdateUserInfoView(currentUser: currentUser)
-                    }
-                    Divider()
-                    VStack {
-                        subHeaderView(subHeader: "Update Email")
-                        ChangeEmailView(currentUser: currentUser)
-                    }
-                    Divider()
-                    VStack {
-                        subHeaderView(subHeader: "Change Password")
-                        ChangePasswordView(currentUser: currentUser)
-                    }
-                    Divider()
-                    Button {
-                        Task {
-                            await authenticationViewModel.logout()
+            if self.loaded {
+                VStack (spacing: 32) {
+                    if let currentUser = usersViewModel.currentUser {
+                        VStack {
+                            subHeaderView(subHeader: "User Info")
+                            UpdateUserInfoView(currentUser: currentUser)
                         }
-                    } label: {
-                        Text("Logout")
-                            .defaultButtonStyle()
+                        Divider()
+                        VStack {
+                            subHeaderView(subHeader: "Update Email")
+                            ChangeEmailView(currentUser: currentUser)
+                        }
+                        Divider()
+                        VStack {
+                            subHeaderView(subHeader: "Change Password")
+                            ChangePasswordView(currentUser: currentUser)
+                        }
+                        Divider()
+                        Button {
+                            Task {
+                                await authenticationViewModel.logout()
+                            }
+                        } label: {
+                            Text("Logout")
+                                .defaultButtonStyle()
+                        }
                     }
+                    Spacer()
                 }
-                Spacer()
+                .padding()
             }
-            .padding()
         }
-        
         .navigationTitle("Settings")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             Task {
                 if let token = await authenticationViewModel.getToken(), let appVanityDomain = authenticationViewModel.appVanityDomain {
                     await usersViewModel.loadCurrentUser(appVanityDomain: appVanityDomain, token: token)
+                    self.loaded = true
                 }
             }
         }

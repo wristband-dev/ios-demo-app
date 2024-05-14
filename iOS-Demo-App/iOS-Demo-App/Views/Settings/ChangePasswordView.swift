@@ -77,7 +77,7 @@ struct ChangePasswordView: View {
                 }
             }
             if changePasswordViewModel.showErrorMessage {
-                Text("Unable to update current user")
+                Text("Unable to change password")
                     .foregroundColor(.red)
                     .italic()
                     .bold()
