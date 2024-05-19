@@ -50,7 +50,7 @@ class AuthenticationViewModel: ObservableObject {
     func getStoredToken() async {
         self.tokenResponse = await KeychainService.shared.getToken()
         
-        let test = await getToken()
+        let _ = await getToken()
         
         self.isLoading = false
     }
@@ -204,7 +204,7 @@ class AuthenticationViewModel: ObservableObject {
                 
                 // clear cookies
                 self.showLogOutBrowser = true
-
+    
             } catch {
                 print("Unable to revoke token: \(error)")
             }

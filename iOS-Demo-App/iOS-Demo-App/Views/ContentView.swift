@@ -26,9 +26,7 @@ struct ContentView: View {
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                NavigationLink {
-                    SettingsView()
-                } label: {
+                NavigationLink(value: "Settings") {
                     Image(systemName: "gear")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -38,14 +36,11 @@ struct ContentView: View {
                 
             }
         }
-//        .navigationDestination(for: String.self) { destination in
-//            switch destination {
-//                case "Settings":
-//                    SettingsView()
-//                default:
-//                    Text("Not Found")
-//            }
-//        }
+        .navigationDestination(for: String.self) { destination in
+            if destination == "Settings" {
+                SettingsView()
+            }
+        }
     }
 }
 

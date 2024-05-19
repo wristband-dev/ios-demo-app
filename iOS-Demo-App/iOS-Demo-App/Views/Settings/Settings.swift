@@ -4,10 +4,11 @@ import SwiftUI
 struct SettingsView: View {
     @EnvironmentObject var usersViewModel: UsersViewModel
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
+
     
     @State var loaded: Bool = false
     
-    var body: some View {
+    var body: some View {        
         ScrollView {
             if self.loaded {
                 VStack (spacing: 32) {
@@ -30,6 +31,7 @@ struct SettingsView: View {
                         Button {
                             Task {
                                 await authenticationViewModel.logout()
+                                
                             }
                         } label: {
                             Text("Logout")
@@ -47,7 +49,7 @@ struct SettingsView: View {
             Task {
                 if let token = await authenticationViewModel.getToken(), let appVanityDomain = authenticationViewModel.appVanityDomain {
                     await usersViewModel.loadCurrentUser(appVanityDomain: appVanityDomain, token: token)
-                    print(usersViewModel.currentUser)
+
                     self.loaded = true
                 }
             }
@@ -93,7 +95,7 @@ struct NewSettings_Previews: PreviewProvider {
         usersViewModel.currentUser = User(id: "1", appId: "1", email: "fddiferd@gmail.com", emailVerified: true, givenName: "Donato", familyName: "DiFerdinando", middleName: "", nickname: nil, pictureUrl: nil, gender: nil, birthdate: nil, locale: "US", timezone: nil, identityProviderName: nil, tenantId: nil, updatedAt: nil)
         
         return NavigationStack {
-            SettingsView()
+            SettingsView(loaded: true)
                 .environmentObject(authenticationViewModel)
                 .environmentObject(usersViewModel)
         }

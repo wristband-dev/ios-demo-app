@@ -22,10 +22,3 @@ struct LandingView: View {
         }
     }
 }
-
-
-struct LandingView_Previews: PreviewProvider {
-    static var previews: some View {
-        LandingView()
-    }
-}

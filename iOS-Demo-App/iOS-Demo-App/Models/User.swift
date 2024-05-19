@@ -18,6 +18,7 @@ struct User: Decodable, Equatable, Identifiable, Encodable {
     var identityProviderName: String?
     var tenantId: String?
     var updatedAt: Int?
+    var roles: [Role]?
 
     enum CodingKeys: String, CodingKey {
         case id = "sub"
@@ -37,5 +38,18 @@ struct User: Decodable, Equatable, Identifiable, Encodable {
         case identityProviderName = "idp_name"
         case tenantId = "tnt_id"
         case updatedAt = "updated_at"
+        case roles
+    }
+}
+
+struct Role: Decodable, Equatable, Identifiable, Encodable {
+    var id: String
+    var name: String
+    var displayName: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case displayName
     }
 }

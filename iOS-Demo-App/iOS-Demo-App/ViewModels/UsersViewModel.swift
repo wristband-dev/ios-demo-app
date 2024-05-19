@@ -3,7 +3,14 @@ import Foundation
 @MainActor
 class UsersViewModel: ObservableObject {
     
-    @Published var currentUser: User?
+    //current user
+    @Published var currentUser: User? {
+        didSet {
+            checkAdminStatus()
+        }
+    }
+    @Published var isAdmin: Bool = false
+    
     @Published var users: [User] = []
  
     func loadCurrentUser(appVanityDomain: String, token: String) async {
@@ -27,5 +34,14 @@ class UsersViewModel: ObservableObject {
         } catch {
             print("Unable to load users: \(error)")
         }
+    }
+    
+    private func checkAdminStatus() {
+        guard let roles = currentUser?.roles else {
+            self.isAdmin = false
+            return
+        }
+        
+        self.isAdmin = roles.contains { $0.displayName == "owner" }
     }
 }

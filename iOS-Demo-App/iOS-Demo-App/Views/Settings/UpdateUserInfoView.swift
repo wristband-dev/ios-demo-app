@@ -141,48 +141,46 @@ struct UpdateUserInfoView: View {
     var currentUser: User
     
     var body: some View {
-        NavigationStack {
-            VStack {
-                BirthdateView(currentUser: currentUser)
-                TextField("Phone Number", text: $updateUserViewModel.phoneNumber)
+        VStack {
+            BirthdateView(currentUser: currentUser)
+                .environmentObject(updateUserViewModel)
+            TextField("Phone Number", text: $updateUserViewModel.phoneNumber)
+                .defaultTextFieldStyle()
+                .keyboardType(.numberPad)
+            HStack {
+                TextField("First Name", text: $updateUserViewModel.givenName)
                     .defaultTextFieldStyle()
-                    .keyboardType(.numberPad)
-                HStack {
-                    TextField("First Name", text: $updateUserViewModel.givenName)
-                        .defaultTextFieldStyle()
-                    TextField("Last Name", text: $updateUserViewModel.familyName)
-                        .defaultTextFieldStyle()
-                }
-                if updateUserViewModel.showErrorMessage {
-                    Text("Unable to update current user")
-                        .foregroundColor(.red)
-                        .italic()
-                        .bold()
-                }
-                if updateUserViewModel.userChanged(currentUser: currentUser) {
-                    Button(action: {
-                        Task {
-                            if let token = await authenticationViewModel.getToken(), let appVanityDomain = authenticationViewModel.appVanityDomain {
-                                let newUser = updateUserViewModel.getNewUser(currentUser: currentUser)
-
-                                await updateUserViewModel.updateCurrentUser(appVanityDomain: appVanityDomain, token: token, newUser: newUser)
-                                await usersViewModel.updateCurrentUser(updateUser: newUser)
-                            }
-                        }
-                    }, label: {
-                        Text("Save")
-                            .defaultButtonStyle()
-                    })
-                } else {
-                    Text("Save")
-                        .defaultButtonStyle(opacity: 0.5)
-                }
+                TextField("Last Name", text: $updateUserViewModel.familyName)
+                    .defaultTextFieldStyle()
             }
-            .onAppear {
-                updateUserViewModel.setUser(currentUser: currentUser)
+            if updateUserViewModel.showErrorMessage {
+                Text("Unable to update current user")
+                    .foregroundColor(.red)
+                    .italic()
+                    .bold()
+            }
+            if updateUserViewModel.userChanged(currentUser: currentUser) {
+                Button(action: {
+                    Task {
+                        if let token = await authenticationViewModel.getToken(), let appVanityDomain = authenticationViewModel.appVanityDomain {
+                            let newUser = updateUserViewModel.getNewUser(currentUser: currentUser)
+
+                            await updateUserViewModel.updateCurrentUser(appVanityDomain: appVanityDomain, token: token, newUser: newUser)
+                            await usersViewModel.updateCurrentUser(updateUser: newUser)
+                        }
+                    }
+                }, label: {
+                    Text("Save")
+                        .defaultButtonStyle()
+                })
+            } else {
+                Text("Save")
+                    .defaultButtonStyle(opacity: 0.5)
             }
         }
-        .environmentObject(updateUserViewModel)
+        .onAppear {
+            updateUserViewModel.setUser(currentUser: currentUser)
+        }
     }
     
     struct BirthdateView: View {
