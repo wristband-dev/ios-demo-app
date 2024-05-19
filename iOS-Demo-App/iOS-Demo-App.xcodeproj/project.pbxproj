@@ -24,7 +24,6 @@
 		69304D612BD6F4D600CA68A5 /* UsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D602BD6F4D600CA68A5 /* UsersViewModel.swift */; };
 		69304D632BD6F91000CA68A5 /* UsersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D622BD6F91000CA68A5 /* UsersService.swift */; };
 		69304D652BD6F9FB00CA68A5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D642BD6F9FB00CA68A5 /* User.swift */; };
-		69304D672BD724A800CA68A5 /* OldSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D662BD724A800CA68A5 /* OldSettingsView.swift */; };
 		69304D6A2BD724F400CA68A5 /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D692BD724F400CA68A5 /* CustomColors.swift */; };
 		6954F41C2BD99FAD0017373C /* LogoutBrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6954F41B2BD99FAD0017373C /* LogoutBrowserView.swift */; };
 		6954F41E2BD9D87A0017373C /* WristbandTouchPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6954F41D2BD9D87A0017373C /* WristbandTouchPointView.swift */; };
@@ -36,6 +35,12 @@
 		69B65F7A2BEDBC7D001B9C08 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B65F792BEDBC7D001B9C08 /* ChangePasswordView.swift */; };
 		69B65FA22BF18A88001B9C08 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B65FA12BF18A88001B9C08 /* Functions.swift */; };
 		69B65FA52BF42A3F001B9C08 /* iPhoneNumberField in Frameworks */ = {isa = PBXBuildFile; productRef = 69B65FA42BF42A3F001B9C08 /* iPhoneNumberField */; };
+		69E313D12BFA87C60065BB52 /* AdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E313D02BFA87C60065BB52 /* AdminView.swift */; };
+		69E313D32BFA8D8C0065BB52 /* SubheaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E313D22BFA8D8C0065BB52 /* SubheaderView.swift */; };
+		69E313D52BFAA5480065BB52 /* PendingInvites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E313D42BFAA5480065BB52 /* PendingInvites.swift */; };
+		69E313D72BFAA57B0065BB52 /* Roles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E313D62BFAA57B0065BB52 /* Roles.swift */; };
+		69E313D92BFAA58D0065BB52 /* InviteUserBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E313D82BFAA58D0065BB52 /* InviteUserBody.swift */; };
+		69E313DB2BFAAA200065BB52 /* AdminViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E313DA2BFAAA200065BB52 /* AdminViewModels.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,7 +62,6 @@
 		69304D602BD6F4D600CA68A5 /* UsersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewModel.swift; sourceTree = "<group>"; };
 		69304D622BD6F91000CA68A5 /* UsersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersService.swift; sourceTree = "<group>"; };
 		69304D642BD6F9FB00CA68A5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		69304D662BD724A800CA68A5 /* OldSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldSettingsView.swift; sourceTree = "<group>"; };
 		69304D692BD724F400CA68A5 /* CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
 		6954F41B2BD99FAD0017373C /* LogoutBrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutBrowserView.swift; sourceTree = "<group>"; };
 		6954F41D2BD9D87A0017373C /* WristbandTouchPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WristbandTouchPointView.swift; sourceTree = "<group>"; };
@@ -68,6 +72,12 @@
 		69B65F772BEDBC57001B9C08 /* ChangeEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeEmailView.swift; sourceTree = "<group>"; };
 		69B65F792BEDBC7D001B9C08 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 		69B65FA12BF18A88001B9C08 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
+		69E313D02BFA87C60065BB52 /* AdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminView.swift; sourceTree = "<group>"; };
+		69E313D22BFA8D8C0065BB52 /* SubheaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubheaderView.swift; sourceTree = "<group>"; };
+		69E313D42BFAA5480065BB52 /* PendingInvites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingInvites.swift; sourceTree = "<group>"; };
+		69E313D62BFAA57B0065BB52 /* Roles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Roles.swift; sourceTree = "<group>"; };
+		69E313D82BFAA58D0065BB52 /* InviteUserBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteUserBody.swift; sourceTree = "<group>"; };
+		69E313DA2BFAAA200065BB52 /* AdminViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewModels.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,11 +147,10 @@
 		69304D412BD2E77600CA68A5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				69E313D02BFA87C60065BB52 /* AdminView.swift */,
 				69304D5C2BD6D85E00CA68A5 /* ContentView.swift */,
-				69304D662BD724A800CA68A5 /* OldSettingsView.swift */,
-				69B65F732BEDBC10001B9C08 /* Settings */,
-				6954F41D2BD9D87A0017373C /* WristbandTouchPointView.swift */,
 				69304D5E2BD6D87D00CA68A5 /* Authentication */,
+				69B65F732BEDBC10001B9C08 /* Settings */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -149,6 +158,7 @@
 		69304D452BD2EAD600CA68A5 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				69E313DA2BFAAA200065BB52 /* AdminViewModels.swift */,
 				69304D462BD2EB3C00CA68A5 /* AuthenticationViewModel.swift */,
 				69304D602BD6F4D600CA68A5 /* UsersViewModel.swift */,
 			);
@@ -158,6 +168,9 @@
 		69304D4F2BD44AF700CA68A5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				69E313D42BFAA5480065BB52 /* PendingInvites.swift */,
+				69E313D62BFAA57B0065BB52 /* Roles.swift */,
+				69E313D82BFAA58D0065BB52 /* InviteUserBody.swift */,
 				69304D502BD44B0700CA68A5 /* TokenResponse.swift */,
 				69304D642BD6F9FB00CA68A5 /* User.swift */,
 			);
@@ -191,6 +204,8 @@
 				69B65F6F2BEB2471001B9C08 /* decodeAndPrintJson.swift */,
 				69B65FA12BF18A88001B9C08 /* Functions.swift */,
 				69B65F6D2BEB1F82001B9C08 /* ViewHelpers.swift */,
+				6954F41D2BD9D87A0017373C /* WristbandTouchPointView.swift */,
+				69E313D22BFA8D8C0065BB52 /* SubheaderView.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -284,16 +299,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69304D672BD724A800CA68A5 /* OldSettingsView.swift in Sources */,
+				69E313D52BFAA5480065BB52 /* PendingInvites.swift in Sources */,
 				69304D402BD2D46500CA68A5 /* AuthenticationService.swift in Sources */,
 				69304D5D2BD6D85E00CA68A5 /* ContentView.swift in Sources */,
 				69B65F7A2BEDBC7D001B9C08 /* ChangePasswordView.swift in Sources */,
 				69304D632BD6F91000CA68A5 /* UsersService.swift in Sources */,
+				69E313D32BFA8D8C0065BB52 /* SubheaderView.swift in Sources */,
 				69304D532BD5845C00CA68A5 /* AppLoginBrowserView.swift in Sources */,
 				69B65F702BEB2471001B9C08 /* decodeAndPrintJson.swift in Sources */,
 				69304D472BD2EB3C00CA68A5 /* AuthenticationViewModel.swift in Sources */,
 				69B65F722BEC55A1001B9C08 /* Settings.swift in Sources */,
 				6954F41C2BD99FAD0017373C /* LogoutBrowserView.swift in Sources */,
+				69E313D72BFAA57B0065BB52 /* Roles.swift in Sources */,
+				69E313DB2BFAAA200065BB52 /* AdminViewModels.swift in Sources */,
 				69304D332BD2D3D000CA68A5 /* AuthenticationView.swift in Sources */,
 				69304D652BD6F9FB00CA68A5 /* User.swift in Sources */,
 				69304D312BD2D3D000CA68A5 /* iOS_Demo_App.swift in Sources */,
@@ -304,8 +322,10 @@
 				69B65F782BEDBC57001B9C08 /* ChangeEmailView.swift in Sources */,
 				69304D4E2BD4362C00CA68A5 /* PKCEGeneratorService.swift in Sources */,
 				69B65F762BEDBC40001B9C08 /* UpdateUserInfoView.swift in Sources */,
+				69E313D12BFA87C60065BB52 /* AdminView.swift in Sources */,
 				69304D5B2BD6D80D00CA68A5 /* LandingView.swift in Sources */,
 				6954F41E2BD9D87A0017373C /* WristbandTouchPointView.swift in Sources */,
+				69E313D92BFAA58D0065BB52 /* InviteUserBody.swift in Sources */,
 				69304D432BD2E78200CA68A5 /* TenantLoginBrowserView.swift in Sources */,
 				69304D492BD2FE2000CA68A5 /* KeychainService.swift in Sources */,
 				69304D512BD44B0700CA68A5 /* TokenResponse.swift in Sources */,

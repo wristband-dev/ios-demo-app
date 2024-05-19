@@ -4,12 +4,14 @@
 <dict>
 	<key>APP_NAME</key>
 	<string>iosdemoapp</string>
-	<key>APP_ID</key>
+	<key>APPLICATION_ID</key>
 	<string>4fxa5frqwrehll2h2wt4ykbrk4</string>
 	<key>APPLICATION_VANITY_DOMAIN</key>
 	<string>iosdemoapp-donato.us.wristband.dev</string>
 	<key>CLIENT_ID</key>
 	<string>mlnp6h6nwrdd3ptqfvsi6pbieu</string>
+	<key>TENANT_ID</key>
+	<string>jye2owp4freslnznol37ilpt2y</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
