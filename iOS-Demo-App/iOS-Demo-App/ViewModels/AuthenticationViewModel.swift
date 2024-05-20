@@ -14,7 +14,6 @@ class AuthenticationViewModel: ObservableObject {
     @Published var appId: String?
     @Published var appVanityDomain: String?
     @Published var clientId: String?
-    @Published var tenantId: String?
     
     // Login Browser
     @Published var showLoginBrowser = false
@@ -45,7 +44,6 @@ class AuthenticationViewModel: ObservableObject {
         self.appId = Bundle.main.infoDictionary?["APPLICATION_ID"] as? String
         self.appVanityDomain = Bundle.main.infoDictionary?["APPLICATION_VANITY_DOMAIN"] as? String
         self.clientId = Bundle.main.infoDictionary?["CLIENT_ID"] as? String
-        self.tenantId = Bundle.main.infoDictionary?["TENANT_ID"] as? String
     }
     
     

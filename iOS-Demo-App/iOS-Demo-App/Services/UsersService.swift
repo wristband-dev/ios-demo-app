@@ -204,7 +204,7 @@ final class UsersService {
     }
     
     func getUserInvites(appVanityDomain: String, token: String, tenantId: String) async throws -> [PendingInvite] {
-        guard let url = URL(string: "https://\(appVanityDomain)/api/v1/tenants/\(tenantId)/new-user-invitation-requests?sort_by=email&count=50") else {
+        guard let url = URL(string: "https://\(appVanityDomain)/api/v1/tenants/\(tenantId)/new-user-invitation-requests?sort_by=email&count=50&query=status eq \"PENDING_INVITE_ACCEPTANCE\"") else {
             throw URLError(.badURL)
         }
         
@@ -245,10 +245,9 @@ final class UsersService {
         let postData = try encoder.encode(cancelUserInviteBody)
         request.httpBody = postData
 
-        let (data, response) = try await URLSession.shared.data(for: request)
-        decodeAndPrintJson(data: data)
-        print(response)
-        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+        let (_, response) = try await URLSession.shared.data(for: request)
+
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 204 else {
             throw URLError(.badServerResponse)
         }
     }

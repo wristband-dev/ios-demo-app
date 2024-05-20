@@ -5,31 +5,34 @@ struct AdminView: View {
     @StateObject var rolesViewModel = RolesViewModel()
     @StateObject var pendingInvitesViewModel = PendingInvitesViewModel()
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
+    @EnvironmentObject var usersViewModel: UsersViewModel
 
     var body: some View {
-        VStack(spacing: 32) {
-            VStack {
-                SubHeaderView(subHeader: "Invite Users")
-                RolesSelectView()
-                    .environmentObject(rolesViewModel)
-                InviteTextFieldView(refreshPendingInvites: refreshPendingInvites)
-                    .environmentObject(rolesViewModel)
+        ScrollView {
+            VStack(spacing: 32) {
+                VStack {
+                    SubHeaderView(subHeader: "Invite Users")
+                    RolesSelectView()
+                        .environmentObject(rolesViewModel)
+                    InviteTextFieldView(refreshPendingInvites: refreshPendingInvites)
+                        .environmentObject(rolesViewModel)
+                }
+                Divider()
+                VStack {
+                    SubHeaderView(subHeader: "Pending Invites")
+                    PendingInvitesView(refreshPendingInvites: refreshPendingInvites)
+                        .environmentObject(pendingInvitesViewModel)
+                }
             }
-            Divider()
-            VStack {
-                SubHeaderView(subHeader: "Pending Invites")
-                PendingInvitesView(refreshPendingInvites: refreshPendingInvites)
-                    .environmentObject(pendingInvitesViewModel)
-            }
-            Spacer()
+            .padding()
         }
-        .padding()
         .navigationTitle("Admin")
     }
 
     struct RolesSelectView: View {
         @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
         @EnvironmentObject var rolesViewModel: RolesViewModel
+        @EnvironmentObject var usersViewModel: UsersViewModel
 
         var body: some View {
             HStack {
@@ -45,7 +48,12 @@ struct AdminView: View {
                     Text(rolesViewModel.selectedRole?.displayName.capitalized ?? "Select Role")
                 }
                 .frame(width: 150, height: 40)
-                .background(CustomColors.invoBlue)
+                .background(
+                    rolesViewModel.selectedRole == nil ?
+                    CustomColors.invoBlue.opacity(0.5) :
+                        CustomColors.invoBlue
+                
+                )
                 .foregroundColor(.white)
                 .bold()
                 .cornerRadius(8)
@@ -55,7 +63,8 @@ struct AdminView: View {
                 Task {
                     if let token = await authenticationViewModel.getToken(),
                        let appVanityDomain = authenticationViewModel.appVanityDomain,
-                       let tenantId = authenticationViewModel.tenantId {
+                       let currentUser = usersViewModel.currentUser,
+                       let tenantId = currentUser.tenantId {
                         await rolesViewModel.getRoles(appVanityDomain: appVanityDomain, token: token, tenantId: tenantId)
                     }
                 }
@@ -67,6 +76,7 @@ struct AdminView: View {
         @StateObject var inviteUserViewModel = InviteUserViewModel()
         @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
         @EnvironmentObject var rolesViewModel: RolesViewModel
+        @EnvironmentObject var usersViewModel: UsersViewModel
         let refreshPendingInvites: () -> Void
 
         var body: some View {
@@ -79,7 +89,8 @@ struct AdminView: View {
                             if let token = await authenticationViewModel.getToken(),
                                let appVanityDomain = authenticationViewModel.appVanityDomain,
                                let appId = authenticationViewModel.appId,
-                               let tenantId = authenticationViewModel.tenantId {
+                               let currentUser = usersViewModel.currentUser,
+                               let tenantId = currentUser.tenantId  {
                                 await inviteUserViewModel.inviteUser(appVanityDomain: appVanityDomain, token: token, tenantId: tenantId, appId: appId, email: inviteUserViewModel.emailText.lowercased(), rolesToBeAssign: [selectedRole.id])
                                 inviteUserViewModel.emailText = ""
                                 refreshPendingInvites()
@@ -124,15 +135,16 @@ struct AdminView: View {
                                 }
                             }
                         }, label: {
-                            Image(systemName: "x.circle.fill")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(height: 35)
-                                .foregroundColor(.red)
+                            Text("Cancel")
+                                .frame(width: 100, height: 40)
+                                .background(CustomColors.invoBlue)
+                                .foregroundColor(.white)
+                                .bold()
+                                .cornerRadius(8)
                         })
                         Text(pendingUserInvite.email)
                             .bold()
-                            .font(.title3)
+                            .font(.headline)
                             .lineLimit(1)
                         Spacer()
                     }
@@ -148,14 +160,15 @@ struct AdminView: View {
         Task {
             if let token = await authenticationViewModel.getToken(),
                let appVanityDomain = authenticationViewModel.appVanityDomain,
-               let tenantId = authenticationViewModel.tenantId {
+               let currentUser = usersViewModel.currentUser,
+               let tenantId = currentUser.tenantId {
                 await pendingInvitesViewModel.getPendingInvites(appVanityDomain: appVanityDomain, token: token, tenantId: tenantId)
             }
         }
     }
 }
 
-struct AdminView_Preview: PreviewProvider {
+struct AdminView_Previews: PreviewProvider {
     static var previews: some View {
         let rolesViewModel = RolesViewModel()
         rolesViewModel.roles = [
@@ -169,12 +182,14 @@ struct AdminView_Preview: PreviewProvider {
         ]
 
         let authenticationViewModel = AuthenticationViewModel()
+        let usersViewModel = UsersViewModel()
 
         return NavigationStack {
             AdminView()
                 .environmentObject(rolesViewModel)
                 .environmentObject(pendingInvitesViewModel)
                 .environmentObject(authenticationViewModel)
+                .environmentObject(usersViewModel)
         }
     }
 }

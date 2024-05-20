@@ -10,8 +10,6 @@
 	<string>iosdemoapp-donato.us.wristband.dev</string>
 	<key>CLIENT_ID</key>
 	<string>mlnp6h6nwrdd3ptqfvsi6pbieu</string>
-	<key>TENANT_ID</key>
-	<string>jye2owp4freslnznol37ilpt2y</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
