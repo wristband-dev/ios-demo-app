@@ -17,11 +17,13 @@ struct AdminView: View {
                     InviteTextFieldView(refreshPendingInvites: refreshPendingInvites)
                         .environmentObject(rolesViewModel)
                 }
-                Divider()
-                VStack {
-                    SubHeaderView(subHeader: "Pending Invites")
-                    PendingInvitesView(refreshPendingInvites: refreshPendingInvites)
-                        .environmentObject(pendingInvitesViewModel)
+                if !pendingInvitesViewModel.pendingUserInvites.isEmpty {
+                    Divider()
+                    VStack {
+                        SubHeaderView(subHeader: "Pending Invites")
+                        PendingInvitesView(refreshPendingInvites: refreshPendingInvites)
+                            .environmentObject(pendingInvitesViewModel)
+                    }
                 }
             }
             .padding()

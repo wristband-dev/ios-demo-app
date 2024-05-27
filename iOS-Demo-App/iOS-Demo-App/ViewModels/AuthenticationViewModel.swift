@@ -88,28 +88,31 @@ class AuthenticationViewModel: ObservableObject {
         // get components from url
         let components = URLComponents(url: url, resolvingAgainstBaseURL: true)
         
+        
+        
+        
+        print(url)
+        
+        
+        
+        
+        
         if url.host == "login" {
             
             // get tenant_domain
             if let tenantDomain = components?.queryItems?.first(where: { $0.name == "tenant_domain" })?.value {
-                
+                print("touch")
                 // get info from login
                 self.tenantDomainName = tenantDomain
                 
-                // clear cached token
+                // clear token response incase the login is redirected from invite
                 self.tokenResponse = nil
-                
-                // clear stored token
-                KeychainService.shared.deleteToken()
-                
-                // return to main path
-                self.path.removeLast(self.path.count)
-                
-                // close logout browser
-                self.showLogOutBrowser = false
                 
                 // generate pkce for tenant login
                 generatePKCE()
+                
+                // show tenant login browser
+                self.showLoginBrowser = true
             }
             
             if let loginHint = components?.queryItems?.first(where: { $0.name == "login_hint" })?.value {
@@ -122,10 +125,20 @@ class AuthenticationViewModel: ObservableObject {
             // get code
             if let code = components?.queryItems?.first(where: { $0.name == "code" })?.value {
                 
-                // verify state is the same as the one sent out
-                
                 await createToken(code: code)
             }
+        } else if url.host == "logout" {
+            // clear cached token
+            self.tokenResponse = nil
+            
+            // clear stored token
+            KeychainService.shared.deleteToken()
+            
+            // return to main path
+            self.path.removeLast(self.path.count)
+            
+            // close logout browser
+            self.showLogOutBrowser = false
         }
         
     }
@@ -137,6 +150,7 @@ class AuthenticationViewModel: ObservableObject {
             do {
                 // get token
                 self.tokenResponse = try await AuthenticationService.shared.getToken(appName: appName, appVanityDomain: appVanityDomain, authCode: code, clientId: clientId, codeVerifier: codeVerifier)
+                print(tokenResponse)
                 
                 // create token expiration date
                 if let expiresIn = tokenResponse?.expiresIn {

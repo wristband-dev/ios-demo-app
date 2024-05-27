@@ -12,7 +12,7 @@ struct LogoutBrowserView: UIViewControllerRepresentable {
            let clientId = authenticationViewModel.clientId {
 //        let tenantDomainName = authenticationViewModel.tenantDomainName {
             
-            let urlString = "https://\("customer1")-\(appVanityDomain)/api/v1/logout?client_id=\(clientId)"
+            let urlString = "https://\("customer1")-\(appVanityDomain)/api/v1/logout?client_id=\(clientId)&redirect_url=iosdemoapp://logout"
             
             // Check if the URL is valid
             if let url = URL(string: urlString) {

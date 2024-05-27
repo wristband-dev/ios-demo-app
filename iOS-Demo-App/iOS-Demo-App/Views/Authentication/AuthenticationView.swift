@@ -25,6 +25,9 @@ struct AuthenticationView: View {
                         .cornerRadius(8)
                 }
                 .sheet(isPresented: $authenticationViewModel.showLoginBrowser) {
+                    
+//                    AppLoginBrowserView()
+                    
                     if authenticationViewModel.tenantDomainName == nil {
                         AppLoginBrowserView()
                     } else {

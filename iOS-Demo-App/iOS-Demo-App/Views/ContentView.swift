@@ -6,12 +6,18 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
+            Button {
+                print(authenticationViewModel.tokenResponse)
+            } label: {
+                Text("get token status")
+            }
 
         }
         .onAppear {
             Task {
                 if let token = await authenticationViewModel.getToken(), let appVanityDomain = authenticationViewModel.appVanityDomain {
                     await usersViewModel.loadCurrentUser(appVanityDomain: appVanityDomain, token: token)
+                    print(usersViewModel.currentUser)
                 }
             }
         }

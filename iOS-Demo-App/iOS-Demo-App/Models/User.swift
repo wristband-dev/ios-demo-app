@@ -12,7 +12,7 @@ struct User: Decodable, Equatable, Identifiable, Encodable {
     var pictureUrl: String?
     var gender: String?
     var birthdate: String?
-    var locale: String
+    var locale: String?
     var timezone: String?
     var phoneNumber: String?
     var identityProviderName: String?

@@ -147,7 +147,6 @@
 		69304D412BD2E77600CA68A5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				69E313D02BFA87C60065BB52 /* AdminView.swift */,
 				69304D5C2BD6D85E00CA68A5 /* ContentView.swift */,
 				69304D5E2BD6D87D00CA68A5 /* Authentication */,
 				69B65F732BEDBC10001B9C08 /* Settings */,
@@ -214,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				69B65F712BEC55A1001B9C08 /* Settings.swift */,
+				69E313D02BFA87C60065BB52 /* AdminView.swift */,
 				69B65F772BEDBC57001B9C08 /* ChangeEmailView.swift */,
 				69B65F752BEDBC40001B9C08 /* UpdateUserInfoView.swift */,
 				69B65F792BEDBC7D001B9C08 /* ChangePasswordView.swift */,
