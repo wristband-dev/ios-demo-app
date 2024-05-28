@@ -21,11 +21,11 @@ class UsersViewModel: ObservableObject {
         }
     }
     
-    func updateCurrentUser(updateUser: UpdateUserBody) async {
-        currentUser?.givenName = updateUser.givenName
-        currentUser?.familyName = updateUser.familyName
-        currentUser?.birthdate = updateUser.birthdate
-        currentUser?.phoneNumber = updateUser.phoneNumber
+    func updateCurrentUser(updatedUser: UpdateUserBody) async {
+        currentUser?.givenName = updatedUser.givenName
+        currentUser?.familyName = updatedUser.familyName
+        currentUser?.birthdate = updatedUser.birthdate
+        currentUser?.phoneNumber = updatedUser.phoneNumber
     }
     
 //    func loadUsers(appId: String, appVanityDomain: String, token: String) async {

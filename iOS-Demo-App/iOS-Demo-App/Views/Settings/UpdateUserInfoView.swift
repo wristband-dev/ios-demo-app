@@ -166,7 +166,7 @@ struct UpdateUserInfoView: View {
                             let newUser = updateUserViewModel.getNewUser(currentUser: currentUser)
 
                             await updateUserViewModel.updateCurrentUser(appVanityDomain: appVanityDomain, token: token, newUser: newUser)
-                            await usersViewModel.updateCurrentUser(updateUser: newUser)
+                            await usersViewModel.updateCurrentUser(updatedUser: newUser)
                         }
                     }
                 }, label: {

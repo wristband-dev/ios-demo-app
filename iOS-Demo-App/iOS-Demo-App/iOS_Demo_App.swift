@@ -18,7 +18,7 @@ struct iOS_Demo_App: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack (path: $authenticationViewModel.path) {
-                LandingView()
+                AuthenticationView()
             }
             .onOpenURL { url in
                 Task {

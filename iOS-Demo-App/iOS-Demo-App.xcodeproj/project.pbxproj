@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		69037AE42C0555FE00D84E4C /* TenantService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69037AE32C0555FE00D84E4C /* TenantService.swift */; };
+		69037AE62C056AF200D84E4C /* TenantPublicMetadataBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69037AE52C056AF200D84E4C /* TenantPublicMetadataBody.swift */; };
 		69304D312BD2D3D000CA68A5 /* iOS_Demo_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D302BD2D3D000CA68A5 /* iOS_Demo_App.swift */; };
-		69304D332BD2D3D000CA68A5 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D322BD2D3D000CA68A5 /* AuthenticationView.swift */; };
+		69304D332BD2D3D000CA68A5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D322BD2D3D000CA68A5 /* LoginView.swift */; };
 		69304D352BD2D3D100CA68A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69304D342BD2D3D100CA68A5 /* Assets.xcassets */; };
 		69304D382BD2D3D100CA68A5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69304D372BD2D3D100CA68A5 /* Preview Assets.xcassets */; };
 		69304D402BD2D46500CA68A5 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D3F2BD2D46500CA68A5 /* AuthenticationService.swift */; };
@@ -16,10 +18,10 @@
 		69304D472BD2EB3C00CA68A5 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D462BD2EB3C00CA68A5 /* AuthenticationViewModel.swift */; };
 		69304D492BD2FE2000CA68A5 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D482BD2FE2000CA68A5 /* KeychainService.swift */; };
 		69304D4C2BD2FF2300CA68A5 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 69304D4B2BD2FF2300CA68A5 /* KeychainAccess */; };
-		69304D4E2BD4362C00CA68A5 /* PKCEGeneratorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D4D2BD4362C00CA68A5 /* PKCEGeneratorService.swift */; };
+		69304D4E2BD4362C00CA68A5 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D4D2BD4362C00CA68A5 /* LoginService.swift */; };
 		69304D512BD44B0700CA68A5 /* TokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D502BD44B0700CA68A5 /* TokenResponse.swift */; };
 		69304D532BD5845C00CA68A5 /* AppLoginBrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D522BD5845C00CA68A5 /* AppLoginBrowserView.swift */; };
-		69304D5B2BD6D80D00CA68A5 /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D5A2BD6D80D00CA68A5 /* LandingView.swift */; };
+		69304D5B2BD6D80D00CA68A5 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D5A2BD6D80D00CA68A5 /* AuthenticationView.swift */; };
 		69304D5D2BD6D85E00CA68A5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D5C2BD6D85E00CA68A5 /* ContentView.swift */; };
 		69304D612BD6F4D600CA68A5 /* UsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D602BD6F4D600CA68A5 /* UsersViewModel.swift */; };
 		69304D632BD6F91000CA68A5 /* UsersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D622BD6F91000CA68A5 /* UsersService.swift */; };
@@ -44,9 +46,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		69037AE32C0555FE00D84E4C /* TenantService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenantService.swift; sourceTree = "<group>"; };
+		69037AE52C056AF200D84E4C /* TenantPublicMetadataBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenantPublicMetadataBody.swift; sourceTree = "<group>"; };
 		69304D2D2BD2D3D000CA68A5 /* iOS-Demo-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-Demo-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		69304D302BD2D3D000CA68A5 /* iOS_Demo_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_Demo_App.swift; sourceTree = "<group>"; };
-		69304D322BD2D3D000CA68A5 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
+		69304D322BD2D3D000CA68A5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		69304D342BD2D3D100CA68A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		69304D372BD2D3D100CA68A5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		69304D3F2BD2D46500CA68A5 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
@@ -54,10 +58,10 @@
 		69304D442BD2E83A00CA68A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		69304D462BD2EB3C00CA68A5 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		69304D482BD2FE2000CA68A5 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
-		69304D4D2BD4362C00CA68A5 /* PKCEGeneratorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKCEGeneratorService.swift; sourceTree = "<group>"; };
+		69304D4D2BD4362C00CA68A5 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		69304D502BD44B0700CA68A5 /* TokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenResponse.swift; sourceTree = "<group>"; };
 		69304D522BD5845C00CA68A5 /* AppLoginBrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLoginBrowserView.swift; sourceTree = "<group>"; };
-		69304D5A2BD6D80D00CA68A5 /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
+		69304D5A2BD6D80D00CA68A5 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		69304D5C2BD6D85E00CA68A5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		69304D602BD6F4D600CA68A5 /* UsersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewModel.swift; sourceTree = "<group>"; };
 		69304D622BD6F91000CA68A5 /* UsersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersService.swift; sourceTree = "<group>"; };
@@ -137,8 +141,9 @@
 			isa = PBXGroup;
 			children = (
 				69304D3F2BD2D46500CA68A5 /* AuthenticationService.swift */,
+				69037AE32C0555FE00D84E4C /* TenantService.swift */,
+				69304D4D2BD4362C00CA68A5 /* LoginService.swift */,
 				69304D482BD2FE2000CA68A5 /* KeychainService.swift */,
-				69304D4D2BD4362C00CA68A5 /* PKCEGeneratorService.swift */,
 				69304D622BD6F91000CA68A5 /* UsersService.swift */,
 			);
 			path = Services;
@@ -171,6 +176,7 @@
 				69E313D62BFAA57B0065BB52 /* Roles.swift */,
 				69E313D82BFAA58D0065BB52 /* InviteUserBody.swift */,
 				69304D502BD44B0700CA68A5 /* TokenResponse.swift */,
+				69037AE52C056AF200D84E4C /* TenantPublicMetadataBody.swift */,
 				69304D642BD6F9FB00CA68A5 /* User.swift */,
 			);
 			path = Models;
@@ -179,8 +185,8 @@
 		69304D5E2BD6D87D00CA68A5 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				69304D322BD2D3D000CA68A5 /* AuthenticationView.swift */,
-				69304D5A2BD6D80D00CA68A5 /* LandingView.swift */,
+				69304D5A2BD6D80D00CA68A5 /* AuthenticationView.swift */,
+				69304D322BD2D3D000CA68A5 /* LoginView.swift */,
 				69304D5F2BD6D88700CA68A5 /* BrowserLoginViews */,
 			);
 			path = Authentication;
@@ -300,8 +306,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				69E313D52BFAA5480065BB52 /* PendingInvites.swift in Sources */,
+				69037AE62C056AF200D84E4C /* TenantPublicMetadataBody.swift in Sources */,
 				69304D402BD2D46500CA68A5 /* AuthenticationService.swift in Sources */,
 				69304D5D2BD6D85E00CA68A5 /* ContentView.swift in Sources */,
+				69037AE42C0555FE00D84E4C /* TenantService.swift in Sources */,
 				69B65F7A2BEDBC7D001B9C08 /* ChangePasswordView.swift in Sources */,
 				69304D632BD6F91000CA68A5 /* UsersService.swift in Sources */,
 				69E313D32BFA8D8C0065BB52 /* SubheaderView.swift in Sources */,
@@ -312,7 +320,7 @@
 				6954F41C2BD99FAD0017373C /* LogoutBrowserView.swift in Sources */,
 				69E313D72BFAA57B0065BB52 /* Roles.swift in Sources */,
 				69E313DB2BFAAA200065BB52 /* AdminViewModels.swift in Sources */,
-				69304D332BD2D3D000CA68A5 /* AuthenticationView.swift in Sources */,
+				69304D332BD2D3D000CA68A5 /* LoginView.swift in Sources */,
 				69304D652BD6F9FB00CA68A5 /* User.swift in Sources */,
 				69304D312BD2D3D000CA68A5 /* iOS_Demo_App.swift in Sources */,
 				69B65FA22BF18A88001B9C08 /* Functions.swift in Sources */,
@@ -320,10 +328,10 @@
 				69B65F6E2BEB1F82001B9C08 /* ViewHelpers.swift in Sources */,
 				69304D6A2BD724F400CA68A5 /* CustomColors.swift in Sources */,
 				69B65F782BEDBC57001B9C08 /* ChangeEmailView.swift in Sources */,
-				69304D4E2BD4362C00CA68A5 /* PKCEGeneratorService.swift in Sources */,
+				69304D4E2BD4362C00CA68A5 /* LoginService.swift in Sources */,
 				69B65F762BEDBC40001B9C08 /* UpdateUserInfoView.swift in Sources */,
 				69E313D12BFA87C60065BB52 /* AdminView.swift in Sources */,
-				69304D5B2BD6D80D00CA68A5 /* LandingView.swift in Sources */,
+				69304D5B2BD6D80D00CA68A5 /* AuthenticationView.swift in Sources */,
 				6954F41E2BD9D87A0017373C /* WristbandTouchPointView.swift in Sources */,
 				69E313D92BFAA58D0065BB52 /* InviteUserBody.swift in Sources */,
 				69304D432BD2E78200CA68A5 /* TenantLoginBrowserView.swift in Sources */,

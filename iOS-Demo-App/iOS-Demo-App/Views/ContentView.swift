@@ -7,7 +7,7 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Button {
-                print(authenticationViewModel.tokenResponse)
+//                print(authenticationViewModel.tokenResponse)
             } label: {
                 Text("get token status")
             }
@@ -17,7 +17,6 @@ struct ContentView: View {
             Task {
                 if let token = await authenticationViewModel.getToken(), let appVanityDomain = authenticationViewModel.appVanityDomain {
                     await usersViewModel.loadCurrentUser(appVanityDomain: appVanityDomain, token: token)
-                    print(usersViewModel.currentUser)
                 }
             }
         }
@@ -55,10 +54,12 @@ struct ContentView: View {
             }
         }
         .navigationDestination(for: String.self) { destination in
-            if destination == "Settings", let currentUser = usersViewModel.currentUser {
-                SettingsView(currentUser: currentUser)
-            } else if destination == "Admin", let currentUser = usersViewModel.currentUser {
-                AdminView()
+            if let currentUser = usersViewModel.currentUser {
+                if destination == "Settings" {
+                    SettingsView(currentUser: currentUser)
+                } else if destination == "Admin" {
+                    AdminView()
+                }
             }
         }
     }

@@ -1,9 +1,9 @@
 import Foundation
 import CryptoKit
 
-final class PKCEGeneratorService {
+final class LoginService {
     
-    static let shared = PKCEGeneratorService()
+    static let shared = LoginService()
     
     func generateCodeVerifier() -> String {
         var bytes = [UInt8](repeating: 0, count: 64)
@@ -21,5 +21,16 @@ final class PKCEGeneratorService {
             .replacingOccurrences(of: "+", with: "-")
             .replacingOccurrences(of: "/", with: "_")
             .replacingOccurrences(of: "=", with: "")
+    }
+    
+    func generateRandomString(length: Int) -> String {
+        let characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        var randomString = ""
+        for _ in 0..<length {
+            let randomIndex = Int(arc4random_uniform(UInt32(characters.count)))
+            let index = characters.index(characters.startIndex, offsetBy: randomIndex)
+            randomString.append(characters[index])
+        }
+        return randomString
     }
 }

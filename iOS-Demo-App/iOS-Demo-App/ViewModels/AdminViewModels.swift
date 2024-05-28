@@ -1,6 +1,60 @@
 import SwiftUI
 
 @MainActor
+class CompanyViewModel: ObservableObject {
+    
+    @Published var company: Company? = nil
+    
+    @Published var companyName = ""
+    @Published var companyAddress = ""
+    @Published var companyCity = ""
+    @Published var companyZipCode = ""
+    @Published var companyState = ""
+    
+    func getCompany(appVanityDomain: String, token: String, tenantId: String) async {
+        do {
+            let company = try await TenantService.shared.getTenant(appVanityDomain: appVanityDomain, token: token, tenantId: tenantId).publicMetadata
+            
+            self.company = company
+            self.companyName = company.companyName ?? ""
+            self.companyAddress = company.companyAddress ?? ""
+            self.companyCity = company.companyCity ?? ""
+            self.companyZipCode = company.companyZipCode ?? ""
+            self.companyState = company.companyState ?? ""
+            
+        } catch {
+            print("Unable to get company: \(error)")
+        }
+    }
+    
+    func updateCompany(appVanityDomain: String, token: String, tenantId: String) async {
+        do {
+            let publicMetadataBody = TenantPublicMetadataBody(
+                publicMetadata: Company(
+                    companyName: self.companyName,
+                    companyAddress: self.companyAddress, 
+                    companyCity: self.companyCity,
+                    companyZipCode: self.companyZipCode,
+                    companyState: self.companyState
+                )
+            )
+            
+            try await TenantService.shared.patchTenant(appVanityDomain: appVanityDomain, token: token, tenantId: tenantId, publicMetaDataBody: publicMetadataBody)
+        } catch {
+            print("Unable to update company: \(error)")
+        }
+    }
+    
+    func didCompanyChange() -> Bool {
+        return companyName != company?.companyName ?? "" ||
+        companyAddress != company?.companyAddress ?? "" ||
+        companyCity != company?.companyCity ?? "" ||
+        companyZipCode != company?.companyZipCode ?? "" ||
+        companyState != company?.companyState ?? ""
+    }
+}
+
+@MainActor
 class InviteUserViewModel: ObservableObject {
     
     @Published var emailText: String = ""

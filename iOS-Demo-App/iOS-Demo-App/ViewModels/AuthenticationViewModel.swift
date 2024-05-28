@@ -16,16 +16,20 @@ class AuthenticationViewModel: ObservableObject {
     @Published var clientId: String?
     
     // Login Browser
-    @Published var showLoginBrowser = false
+    @Published var showAppLoginBrowser = false
+    @Published var showTenantLoginBrowser = false
     @Published var tenantDomainName: String?
     @Published var loginHint: String?
     
     // Logout Browser
     @Published var showLogOutBrowser = false
     
-    // PKCE
+    // Login
     @Published var codeVerifier: String?
     @Published var codeChallenge: String?
+    @Published var state: String?
+    @Published var nonce: String?
+    
     
     // Response Token
     @Published var tokenResponse: TokenResponse? = nil
@@ -88,45 +92,42 @@ class AuthenticationViewModel: ObservableObject {
         // get components from url
         let components = URLComponents(url: url, resolvingAgainstBaseURL: true)
         
-        
-        
-        
-        print(url)
-        
-        
-        
-        
-        
+        // login browser
         if url.host == "login" {
-            
             // get tenant_domain
             if let tenantDomain = components?.queryItems?.first(where: { $0.name == "tenant_domain" })?.value {
-                print("touch")
+                // generate login utilities
+                await generatePKCE()
+                await generateNonce()
+                await generateState()
+                
                 // get info from login
                 self.tenantDomainName = tenantDomain
                 
                 // clear token response incase the login is redirected from invite
                 self.tokenResponse = nil
-                
-                // generate pkce for tenant login
-                generatePKCE()
-                
-                // show tenant login browser
-                self.showLoginBrowser = true
+
+                // get tenant login
+                self.showAppLoginBrowser = false
+                self.showTenantLoginBrowser = true
             }
             
             if let loginHint = components?.queryItems?.first(where: { $0.name == "login_hint" })?.value {
-                
                 self.loginHint = loginHint
             }
             
+        // on login callback or invite user
         } else if url.host == "callback" {
             
             // get code
-            if let code = components?.queryItems?.first(where: { $0.name == "code" })?.value {
-                
+            if let code = components?.queryItems?.first(where: { $0.name == "code" })?.value, self.state == components?.queryItems?.first(where: { $0.name == "state" })?.value {
                 await createToken(code: code)
             }
+            
+            // remove path
+            self.path.removeLast(self.path.count)
+            
+        // on logout
         } else if url.host == "logout" {
             // clear cached token
             self.tokenResponse = nil
@@ -150,8 +151,7 @@ class AuthenticationViewModel: ObservableObject {
             do {
                 // get token
                 self.tokenResponse = try await AuthenticationService.shared.getToken(appName: appName, appVanityDomain: appVanityDomain, authCode: code, clientId: clientId, codeVerifier: codeVerifier)
-                print(tokenResponse)
-                
+
                 // create token expiration date
                 if let expiresIn = tokenResponse?.expiresIn {
                     self.tokenResponse?.tokenExpirationDate = Date().addingTimeInterval(TimeInterval(expiresIn))
@@ -163,10 +163,10 @@ class AuthenticationViewModel: ObservableObject {
                 }
                 
                 // proceed to content view
-                self.showLoginBrowser = false
+                self.showTenantLoginBrowser = false
                 
             } catch {
-                self.showLoginBrowser = false
+                self.showTenantLoginBrowser = false
                 self.errorMsg = "Unable to login, please reach out for support"
                 print("Unable to get token: \(error)")
             }
@@ -193,19 +193,19 @@ class AuthenticationViewModel: ObservableObject {
         }
     }
     
-    func generatePKCE() {
-        self.codeVerifier = PKCEGeneratorService.shared.generateCodeVerifier()
+    func generatePKCE() async {
+        self.codeVerifier = LoginService.shared.generateCodeVerifier()
         if let codeVerifier {
-            self.codeChallenge = PKCEGeneratorService.shared.generateCodeChallenge(from: codeVerifier)
+            self.codeChallenge = LoginService.shared.generateCodeChallenge(from: codeVerifier)
         }
     }
     
-    func generateState() {
-        
+    func generateState() async {
+        self.state = LoginService.shared.generateRandomString(length: 22)
     }
     
-    func generateNonce() {
-        
+    func generateNonce() async {
+        self.nonce = LoginService.shared.generateRandomString(length: 22)
     }
     
     
@@ -224,6 +224,4 @@ class AuthenticationViewModel: ObservableObject {
             }
         }
     }
-    
-    
 }

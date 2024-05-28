@@ -12,12 +12,12 @@ struct TenantLoginBrowserView: UIViewControllerRepresentable {
            let appVanityDomain = authenticationViewModel.appVanityDomain,
            let clientId = authenticationViewModel.clientId,
            let codeChallenge = authenticationViewModel.codeChallenge,
-           let tenantDomainName = authenticationViewModel.tenantDomainName {
+           let tenantDomainName = authenticationViewModel.tenantDomainName,
+           let state = authenticationViewModel.state,
+           let nonce = authenticationViewModel.nonce
+            {
             
-            // state -> transfer between auth and callback
-            // 
-            
-            var urlString = "https://\(tenantDomainName)-\(appVanityDomain)/api/v1/oauth2/authorize?client_id=\(clientId)&response_type=code&redirect_uri=\(appName)%3A%2F%2Fcallback&state=jcm2ejayovsgbgbpkihblu47&nonce=gbgbpkihblu47jcm2ejayovs&scope=roles+openid+offline_access+profile+email+phone&code_challenge=\(codeChallenge)&code_challenge_method=S256"
+            var urlString = "https://\(tenantDomainName)-\(appVanityDomain)/api/v1/oauth2/authorize?client_id=\(clientId)&response_type=code&redirect_uri=\(appName)%3A%2F%2Fcallback&state=\(state)&nonce=\(nonce)&scope=roles+openid+offline_access+profile+email+phone&code_challenge=\(codeChallenge)&code_challenge_method=S256"
             
             if let loginHint = authenticationViewModel.loginHint {
                 urlString.append("&login_hint=\(loginHint)")

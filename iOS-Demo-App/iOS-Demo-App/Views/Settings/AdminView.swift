@@ -1,7 +1,7 @@
 import SwiftUI
 
-
 struct AdminView: View {
+    @StateObject var companyViewModel = CompanyViewModel()
     @StateObject var rolesViewModel = RolesViewModel()
     @StateObject var pendingInvitesViewModel = PendingInvitesViewModel()
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
@@ -10,6 +10,12 @@ struct AdminView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 32) {
+                VStack {
+                    SubHeaderView(subHeader: "Company Info")
+                    CompanyInfoView()
+                        .environmentObject(companyViewModel)
+                }
+                Divider()
                 VStack {
                     SubHeaderView(subHeader: "Invite Users")
                     RolesSelectView()
@@ -29,6 +35,59 @@ struct AdminView: View {
             .padding()
         }
         .navigationTitle("Admin")
+    }
+    
+    struct CompanyInfoView: View {
+        @EnvironmentObject var companyViewModel: CompanyViewModel
+        @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
+        @EnvironmentObject var usersViewModel: UsersViewModel
+        
+        var body: some View {
+            VStack {
+                TextField("Name", text: $companyViewModel.companyName)
+                    .defaultTextFieldStyle()
+                Divider()
+                TextField("Address", text: $companyViewModel.companyAddress)
+                    .defaultTextFieldStyle()
+                TextField("City", text: $companyViewModel.companyCity)
+                    .defaultTextFieldStyle()
+                HStack {
+                    TextField("Zip Code", text: $companyViewModel.companyZipCode)
+                        .defaultTextFieldStyle()
+                    TextField("State", text: $companyViewModel.companyState)
+                        .defaultTextFieldStyle()
+                }
+                if companyViewModel.didCompanyChange() {
+                    Button(action: {
+                        Task {
+                            if let token = await authenticationViewModel.getToken(),
+                               let appVanityDomain = authenticationViewModel.appVanityDomain,
+                               let currentUser = usersViewModel.currentUser,
+                               let tenantId = currentUser.tenantId {
+                                await companyViewModel.updateCompany(appVanityDomain: appVanityDomain, token: token, tenantId: tenantId)
+                                await companyViewModel.getCompany(appVanityDomain: appVanityDomain, token: token, tenantId: tenantId)
+                            }
+                        }
+                    }, label: {
+                        Text("Save")
+                            .defaultButtonStyle()
+                    })
+                } else {
+                    Text("Save")
+                        .defaultButtonStyle().opacity(0.5)
+                }
+            }
+            .onAppear {
+                Task {
+                    if let token = await authenticationViewModel.getToken(),
+                       let appVanityDomain = authenticationViewModel.appVanityDomain,
+                       let currentUser = usersViewModel.currentUser,
+                       let tenantId = currentUser.tenantId {
+                        await companyViewModel.getCompany(appVanityDomain: appVanityDomain, token: token, tenantId: tenantId)
+                    }
+                }
+            }
+        }
     }
 
     struct RolesSelectView: View {
@@ -172,6 +231,9 @@ struct AdminView: View {
 
 struct AdminView_Previews: PreviewProvider {
     static var previews: some View {
+        let companyViewModel = CompanyViewModel()
+        companyViewModel.company = Company(companyName: "Test Name", companyAddress: "Address", companyCity: "city", companyZipCode: "Zip", companyState: "State")
+        
         let rolesViewModel = RolesViewModel()
         rolesViewModel.roles = [
             Role(id: "1", name: "longname1", displayName: "display Name 1"),
@@ -188,6 +250,7 @@ struct AdminView_Previews: PreviewProvider {
 
         return NavigationStack {
             AdminView()
+                .environmentObject(companyViewModel)
                 .environmentObject(rolesViewModel)
                 .environmentObject(pendingInvitesViewModel)
                 .environmentObject(authenticationViewModel)
