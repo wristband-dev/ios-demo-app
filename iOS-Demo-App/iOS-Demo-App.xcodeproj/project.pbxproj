@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		69037AE42C0555FE00D84E4C /* TenantService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69037AE32C0555FE00D84E4C /* TenantService.swift */; };
 		69037AE62C056AF200D84E4C /* TenantPublicMetadataBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69037AE52C056AF200D84E4C /* TenantPublicMetadataBody.swift */; };
+		69037AE82C0574F800D84E4C /* InvoicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69037AE72C0574F800D84E4C /* InvoicesView.swift */; };
+		69037AEA2C0575B300D84E4C /* InvoiceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69037AE92C0575B300D84E4C /* InvoiceService.swift */; };
+		69037AEC2C0575F200D84E4C /* Invoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69037AEB2C0575F200D84E4C /* Invoice.swift */; };
+		69037AEE2C05760B00D84E4C /* InvoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69037AED2C05760B00D84E4C /* InvoiceViewModel.swift */; };
 		69304D312BD2D3D000CA68A5 /* iOS_Demo_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D302BD2D3D000CA68A5 /* iOS_Demo_App.swift */; };
 		69304D332BD2D3D000CA68A5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69304D322BD2D3D000CA68A5 /* LoginView.swift */; };
 		69304D352BD2D3D100CA68A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69304D342BD2D3D100CA68A5 /* Assets.xcassets */; };
@@ -48,6 +52,10 @@
 /* Begin PBXFileReference section */
 		69037AE32C0555FE00D84E4C /* TenantService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenantService.swift; sourceTree = "<group>"; };
 		69037AE52C056AF200D84E4C /* TenantPublicMetadataBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenantPublicMetadataBody.swift; sourceTree = "<group>"; };
+		69037AE72C0574F800D84E4C /* InvoicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoicesView.swift; sourceTree = "<group>"; };
+		69037AE92C0575B300D84E4C /* InvoiceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceService.swift; sourceTree = "<group>"; };
+		69037AEB2C0575F200D84E4C /* Invoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Invoice.swift; sourceTree = "<group>"; };
+		69037AED2C05760B00D84E4C /* InvoiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceViewModel.swift; sourceTree = "<group>"; };
 		69304D2D2BD2D3D000CA68A5 /* iOS-Demo-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-Demo-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		69304D302BD2D3D000CA68A5 /* iOS_Demo_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_Demo_App.swift; sourceTree = "<group>"; };
 		69304D322BD2D3D000CA68A5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -141,9 +149,10 @@
 			isa = PBXGroup;
 			children = (
 				69304D3F2BD2D46500CA68A5 /* AuthenticationService.swift */,
-				69037AE32C0555FE00D84E4C /* TenantService.swift */,
+				69037AE92C0575B300D84E4C /* InvoiceService.swift */,
 				69304D4D2BD4362C00CA68A5 /* LoginService.swift */,
 				69304D482BD2FE2000CA68A5 /* KeychainService.swift */,
+				69037AE32C0555FE00D84E4C /* TenantService.swift */,
 				69304D622BD6F91000CA68A5 /* UsersService.swift */,
 			);
 			path = Services;
@@ -153,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				69304D5C2BD6D85E00CA68A5 /* ContentView.swift */,
+				69037AE72C0574F800D84E4C /* InvoicesView.swift */,
 				69304D5E2BD6D87D00CA68A5 /* Authentication */,
 				69B65F732BEDBC10001B9C08 /* Settings */,
 			);
@@ -165,6 +175,7 @@
 				69E313DA2BFAAA200065BB52 /* AdminViewModels.swift */,
 				69304D462BD2EB3C00CA68A5 /* AuthenticationViewModel.swift */,
 				69304D602BD6F4D600CA68A5 /* UsersViewModel.swift */,
+				69037AED2C05760B00D84E4C /* InvoiceViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -178,6 +189,7 @@
 				69304D502BD44B0700CA68A5 /* TokenResponse.swift */,
 				69037AE52C056AF200D84E4C /* TenantPublicMetadataBody.swift */,
 				69304D642BD6F9FB00CA68A5 /* User.swift */,
+				69037AEB2C0575F200D84E4C /* Invoice.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -305,6 +317,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69037AE82C0574F800D84E4C /* InvoicesView.swift in Sources */,
 				69E313D52BFAA5480065BB52 /* PendingInvites.swift in Sources */,
 				69037AE62C056AF200D84E4C /* TenantPublicMetadataBody.swift in Sources */,
 				69304D402BD2D46500CA68A5 /* AuthenticationService.swift in Sources */,
@@ -321,9 +334,11 @@
 				69E313D72BFAA57B0065BB52 /* Roles.swift in Sources */,
 				69E313DB2BFAAA200065BB52 /* AdminViewModels.swift in Sources */,
 				69304D332BD2D3D000CA68A5 /* LoginView.swift in Sources */,
+				69037AEC2C0575F200D84E4C /* Invoice.swift in Sources */,
 				69304D652BD6F9FB00CA68A5 /* User.swift in Sources */,
 				69304D312BD2D3D000CA68A5 /* iOS_Demo_App.swift in Sources */,
 				69B65FA22BF18A88001B9C08 /* Functions.swift in Sources */,
+				69037AEE2C05760B00D84E4C /* InvoiceViewModel.swift in Sources */,
 				69304D612BD6F4D600CA68A5 /* UsersViewModel.swift in Sources */,
 				69B65F6E2BEB1F82001B9C08 /* ViewHelpers.swift in Sources */,
 				69304D6A2BD724F400CA68A5 /* CustomColors.swift in Sources */,
@@ -335,6 +350,7 @@
 				6954F41E2BD9D87A0017373C /* WristbandTouchPointView.swift in Sources */,
 				69E313D92BFAA58D0065BB52 /* InviteUserBody.swift in Sources */,
 				69304D432BD2E78200CA68A5 /* TenantLoginBrowserView.swift in Sources */,
+				69037AEA2C0575B300D84E4C /* InvoiceService.swift in Sources */,
 				69304D492BD2FE2000CA68A5 /* KeychainService.swift in Sources */,
 				69304D512BD44B0700CA68A5 /* TokenResponse.swift in Sources */,
 			);
