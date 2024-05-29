@@ -6,12 +6,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Button {
-//                print(authenticationViewModel.tokenResponse)
-            } label: {
-                Text("get token status")
-            }
-
+            InvoicesView()
         }
         .onAppear {
             Task {
