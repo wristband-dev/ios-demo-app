@@ -66,9 +66,9 @@ class InviteUserViewModel: ObservableObject {
         return emailPred.evaluate(with: self.emailText)
     }
     
-    func inviteUser(appVanityDomain: String, token: String, tenantId: String, appId: String, email: String, rolesToBeAssign: [String]) async {
+    func inviteUser(appVanityDomain: String, token: String, tenantId: String, email: String, rolesToBeAssign: [String]) async {
         do {
-            try await UsersService.shared.inviteNewUser(appVanityDomain: appVanityDomain, token: token, inviteUserBody: InviteUserBody(tenantId: tenantId, appId: appId, email: email, rolesToBeAssign: rolesToBeAssign))
+            try await UsersService.shared.inviteNewUser(appVanityDomain: appVanityDomain, token: token, inviteUserBody: InviteUserBody(tenantId: tenantId, email: email, rolesToBeAssign: rolesToBeAssign))
         } catch {
             print("Unable to invite user: \(error)")
         }

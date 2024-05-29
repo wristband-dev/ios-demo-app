@@ -33,6 +33,9 @@ struct AdminView: View {
                 }
             }
             .padding()
+            .onAppear {
+                refreshPendingInvites()
+            }
         }
         .navigationTitle("Admin")
     }
@@ -152,7 +155,7 @@ struct AdminView: View {
                                let appId = authenticationViewModel.appId,
                                let currentUser = usersViewModel.currentUser,
                                let tenantId = currentUser.tenantId  {
-                                await inviteUserViewModel.inviteUser(appVanityDomain: appVanityDomain, token: token, tenantId: tenantId, appId: appId, email: inviteUserViewModel.emailText.lowercased(), rolesToBeAssign: [selectedRole.id])
+                                await inviteUserViewModel.inviteUser(appVanityDomain: appVanityDomain, token: token, tenantId: tenantId, email: inviteUserViewModel.emailText.lowercased(), rolesToBeAssign: [selectedRole.id])
                                 inviteUserViewModel.emailText = ""
                                 refreshPendingInvites()
                             }
@@ -210,9 +213,6 @@ struct AdminView: View {
                         Spacer()
                     }
                 }
-            }
-            .onAppear {
-                refreshPendingInvites()
             }
         }
     }
