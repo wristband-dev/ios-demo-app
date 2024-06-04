@@ -15,6 +15,7 @@ class UsersViewModel: ObservableObject {
  
     func loadCurrentUser(appVanityDomain: String, token: String) async {
         do {
+            // WRISTBAND_TOUCHPOINT
             self.currentUser = try await UsersService.shared.getCurrentUser(appVanityDomain: appVanityDomain, token:token)
         } catch {
             print("Unable to load current user: \(error)")
@@ -27,14 +28,6 @@ class UsersViewModel: ObservableObject {
         currentUser?.birthdate = updatedUser.birthdate
         currentUser?.phoneNumber = updatedUser.phoneNumber
     }
-    
-//    func loadUsers(appId: String, appVanityDomain: String, token: String) async {
-//        do {
-//            self.currentUser = try await UsersService.shared.getUsers(appId: appId, appVanityDomain: appVanityDomain, token: token, start_index: 1, count: 50)
-//        } catch {
-//            print("Unable to load users: \(error)")
-//        }
-//    }
     
     private func checkAdminStatus() {
         guard let roles = currentUser?.roles else {

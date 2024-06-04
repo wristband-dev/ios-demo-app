@@ -80,7 +80,7 @@ class AuthenticationViewModel: ObservableObject {
         }
     }
     
-    
+    // WRISTBAND_TOUCHPOINT - get redirect url
     func handleRedirectUri(url: URL) async {
         
         guard url.scheme == "iosdemoapp" else {
@@ -175,7 +175,7 @@ class AuthenticationViewModel: ObservableObject {
     func refreshToken(refreshToken: String) async throws{
         if let appVanityDomain, let clientId {
      
-            // get token
+            // WRISTBAND_TOUCHPOINT - get token
             self.tokenResponse = try await AuthenticationService.shared.getRefreshToken(appVanityDomain: appVanityDomain, clientId: clientId, refreshToken: refreshToken)
             
             // create token expiration date
@@ -211,7 +211,7 @@ class AuthenticationViewModel: ObservableObject {
         
         if let appVanityDomain, let clientId, let refreshToken =  tokenResponse?.refreshToken {
             do {
-                // revoke token
+                // WRISTBAND_TOUCHPOINT - revoke token
                 try await AuthenticationService.shared.revokeToken(appVanityDomain: appVanityDomain, clientId: clientId, refreshToken: refreshToken)
                 
                 // clear cookies

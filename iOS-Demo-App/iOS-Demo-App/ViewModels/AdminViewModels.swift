@@ -13,6 +13,7 @@ class CompanyViewModel: ObservableObject {
     
     func getCompany(appVanityDomain: String, token: String, tenantId: String) async {
         do {
+            // WRISTBAND_TOUCHPOINT
             let company = try await TenantService.shared.getTenant(appVanityDomain: appVanityDomain, token: token, tenantId: tenantId).publicMetadata
             
             self.company = company
@@ -39,6 +40,7 @@ class CompanyViewModel: ObservableObject {
                 )
             )
             
+            // WRISTBAND_TOUCHPOINT
             try await TenantService.shared.patchTenant(appVanityDomain: appVanityDomain, token: token, tenantId: tenantId, publicMetaDataBody: publicMetadataBody)
         } catch {
             print("Unable to update company: \(error)")
@@ -68,6 +70,7 @@ class InviteUserViewModel: ObservableObject {
     
     func inviteUser(appVanityDomain: String, token: String, tenantId: String, email: String, rolesToBeAssign: [String]) async {
         do {
+            // WRISTBAND_TOUCHPOINT
             try await UsersService.shared.inviteNewUser(appVanityDomain: appVanityDomain, token: token, inviteUserBody: InviteUserBody(tenantId: tenantId, email: email, rolesToBeAssign: rolesToBeAssign))
         } catch {
             print("Unable to invite user: \(error)")
@@ -83,6 +86,7 @@ class RolesViewModel: ObservableObject {
     
     func getRoles(appVanityDomain: String, token: String, tenantId: String) async {
         do {
+            // WRISTBAND_TOUCHPOINT
             self.roles = try await UsersService.shared.getRoles(appVanityDomain: appVanityDomain, token: token, tenantId: tenantId).items
         } catch {
             print("Unable to get roles: \(error)")
@@ -98,6 +102,7 @@ class PendingInvitesViewModel: ObservableObject {
     
     func getPendingInvites(appVanityDomain: String, token: String, tenantId: String) async {
         do {
+            // WRISTBAND_TOUCHPOINT
             self.pendingUserInvites = try await UsersService.shared.getUserInvites(appVanityDomain: appVanityDomain, token: token, tenantId: tenantId)
         } catch {
             print("Unable to get pending invites: \(error)")
@@ -106,6 +111,7 @@ class PendingInvitesViewModel: ObservableObject {
     
     func cancelUserInvite(appVanityDomain: String, token: String, newUserInvitationRequestId: String) async {
         do {
+            // WRISTBAND_TOUCHPOINT
             try await UsersService.shared.cancelUserInvite(appVanityDomain: appVanityDomain, token: token, cancelUserInviteBody: CancelUserInviteBody(newUserInvitationRequestId: newUserInvitationRequestId))
         } catch {
             print("Unable to get cancel invite: \(error)")
