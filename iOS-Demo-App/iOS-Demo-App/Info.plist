@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>APP_NAME</key>
-	<string>iosdemoapp</string>
 	<key>APPLICATION_ID</key>
 	<string>4fxa5frqwrehll2h2wt4ykbrk4</string>
 	<key>APPLICATION_VANITY_DOMAIN</key>

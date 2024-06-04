@@ -1,7 +1,4 @@
+.DS_Store
 iOS-Demo-App/.DS_Store
-iOS-Demo-App/iOS-Demo-App.xcodeproj/project.xcworkspace/xcuserdata/fddiferd.xcuserdatad/UserInterfaceState.xcuserstate
-<<<<<<< HEAD
-=======
-
-# git rm --cached -r   
->>>>>>> development
+IOS-DEMO-APP/iOS-Demo-App.xcodeproj/project.xcworkspace/xcuserdata/fddiferd.xcuserdatad/UserInterfaceState.xcuserstate
+iOS-Demo-App/iOS-Demo-App.xcodeproj/project.pbxproj

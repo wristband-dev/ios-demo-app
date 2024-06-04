@@ -5,7 +5,7 @@ final class AuthenticationService {
     static let shared = AuthenticationService()
     
     
-    func getToken(appName: String, appVanityDomain: String, authCode: String, clientId: String, codeVerifier: String) async throws -> TokenResponse {
+    func getToken(appVanityDomain: String, authCode: String, clientId: String, codeVerifier: String) async throws -> TokenResponse {
 
         guard let url = URL(string: "https://\(appVanityDomain)/api/v1/oauth2/token") else {
             throw URLError(.badURL)
@@ -16,7 +16,7 @@ final class AuthenticationService {
         request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
-        let postString = "grant_type=authorization_code&client_id=\(clientId)&code_verifier=\(codeVerifier)&code=\(authCode)&redirect_uri=\(appName)%3A%2F%2Fcallback"
+        let postString = "grant_type=authorization_code&client_id=\(clientId)&code_verifier=\(codeVerifier)&code=\(authCode)&redirect_uri=iosdemoapp%3A%2F%2Fcallback"
         
         request.httpBody = postString.data(using: .utf8)
         

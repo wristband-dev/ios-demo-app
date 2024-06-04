@@ -10,7 +10,6 @@ class AuthenticationViewModel: ObservableObject {
     @Published var errorMsg: String?
     
     // Info.plsy
-    @Published var appName: String?
     @Published var appId: String?
     @Published var appVanityDomain: String?
     @Published var clientId: String?
@@ -44,7 +43,6 @@ class AuthenticationViewModel: ObservableObject {
     
     
     func getInfoDictValues() {
-        self.appName = Bundle.main.infoDictionary?["APP_NAME"] as? String
         self.appId = Bundle.main.infoDictionary?["APPLICATION_ID"] as? String
         self.appVanityDomain = Bundle.main.infoDictionary?["APPLICATION_VANITY_DOMAIN"] as? String
         self.clientId = Bundle.main.infoDictionary?["CLIENT_ID"] as? String
@@ -85,7 +83,7 @@ class AuthenticationViewModel: ObservableObject {
     
     func handleRedirectUri(url: URL) async {
         
-        guard url.scheme == self.appName else {
+        guard url.scheme == "iosdemoapp" else {
             return
         }
 
@@ -146,11 +144,11 @@ class AuthenticationViewModel: ObservableObject {
     
     
     func createToken(code: String) async {
-        if let appName, let appVanityDomain, let clientId, let codeVerifier {
+        if let appVanityDomain, let clientId, let codeVerifier {
             
             do {
-                // get token
-                self.tokenResponse = try await AuthenticationService.shared.getToken(appName: appName, appVanityDomain: appVanityDomain, authCode: code, clientId: clientId, codeVerifier: codeVerifier)
+                // WRISTBAND_TOUCHPOINT - get token
+                self.tokenResponse = try await AuthenticationService.shared.getToken(appVanityDomain: appVanityDomain, authCode: code, clientId: clientId, codeVerifier: codeVerifier)
 
                 // create token expiration date
                 if let expiresIn = tokenResponse?.expiresIn {

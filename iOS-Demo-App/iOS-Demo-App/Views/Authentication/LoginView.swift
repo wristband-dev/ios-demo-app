@@ -8,10 +8,7 @@ struct LoginView: View {
         VStack {
             
             VStack {
-                HStack {
-                    Spacer()
-                    WristbandTouchPointView()
-                }
+                PoweredByWristbandView()
                 Button {
                     if authenticationViewModel.tenantDomainName == nil {
                         authenticationViewModel.showAppLoginBrowser = true

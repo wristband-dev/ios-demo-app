@@ -8,34 +8,37 @@ struct SettingsView: View {
     
     var body: some View {        
         ScrollView {
-            VStack (spacing: 32) {
-                VStack {
-                    SubHeaderView(subHeader: "User Info")
-                    UpdateUserInfoView(currentUser: currentUser)
-                }
-                Divider()
-                VStack {
-                    SubHeaderView(subHeader: "Update Email")
-                    ChangeEmailView(currentUser: currentUser)
-                }
-                Divider()
-                VStack {
-                    SubHeaderView(subHeader: "Change Password")
-                    ChangePasswordView(currentUser: currentUser)
-                }
-                Divider()
-                Button {
-                    Task {
-                        await authenticationViewModel.logout()
-                        
+            VStack {
+                PoweredByWristbandView()
+                VStack (spacing: 32) {
+                    VStack {
+                        SubHeaderView(subHeader: "User Info")
+                        UpdateUserInfoView(currentUser: currentUser)
                     }
-                } label: {
-                    Text("Logout")
-                        .defaultButtonStyle()
+                    Divider()
+                    VStack {
+                        SubHeaderView(subHeader: "Update Email")
+                        ChangeEmailView(currentUser: currentUser)
+                    }
+                    Divider()
+                    VStack {
+                        SubHeaderView(subHeader: "Change Password")
+                        ChangePasswordView(currentUser: currentUser)
+                    }
+                    Divider()
+                    Button {
+                        Task {
+                            await authenticationViewModel.logout()
+                            
+                        }
+                    } label: {
+                        Text("Logout")
+                            .defaultButtonStyle()
+                    }
+                    Spacer()
                 }
-                Spacer()
+                .padding()
             }
-            .padding()
         }
         .navigationTitle("Settings")
         .sheet(isPresented: $authenticationViewModel.showLogOutBrowser) {

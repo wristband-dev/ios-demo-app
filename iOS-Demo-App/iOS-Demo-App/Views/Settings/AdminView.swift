@@ -9,32 +9,35 @@ struct AdminView: View {
 
     var body: some View {
         ScrollView {
-            VStack(spacing: 32) {
-                VStack {
-                    SubHeaderView(subHeader: "Company Info")
-                    CompanyInfoView()
-                        .environmentObject(companyViewModel)
-                }
-                Divider()
-                VStack {
-                    SubHeaderView(subHeader: "Invite Users")
-                    RolesSelectView()
-                        .environmentObject(rolesViewModel)
-                    InviteTextFieldView(refreshPendingInvites: refreshPendingInvites)
-                        .environmentObject(rolesViewModel)
-                }
-                if !pendingInvitesViewModel.pendingUserInvites.isEmpty {
+            VStack {
+                PoweredByWristbandView()
+                VStack(spacing: 32) {
+                    VStack {
+                        SubHeaderView(subHeader: "Company Info")
+                        CompanyInfoView()
+                            .environmentObject(companyViewModel)
+                    }
                     Divider()
                     VStack {
-                        SubHeaderView(subHeader: "Pending Invites")
-                        PendingInvitesView(refreshPendingInvites: refreshPendingInvites)
-                            .environmentObject(pendingInvitesViewModel)
+                        SubHeaderView(subHeader: "Invite Users")
+                        RolesSelectView()
+                            .environmentObject(rolesViewModel)
+                        InviteTextFieldView(refreshPendingInvites: refreshPendingInvites)
+                            .environmentObject(rolesViewModel)
+                    }
+                    if !pendingInvitesViewModel.pendingUserInvites.isEmpty {
+                        Divider()
+                        VStack {
+                            SubHeaderView(subHeader: "Pending Invites")
+                            PendingInvitesView(refreshPendingInvites: refreshPendingInvites)
+                                .environmentObject(pendingInvitesViewModel)
+                        }
                     }
                 }
-            }
-            .padding()
-            .onAppear {
-                refreshPendingInvites()
+                .padding()
+                .onAppear {
+                    refreshPendingInvites()
+                }
             }
         }
         .navigationTitle("Admin")
@@ -152,7 +155,6 @@ struct AdminView: View {
                         Task {
                             if let token = await authenticationViewModel.getToken(),
                                let appVanityDomain = authenticationViewModel.appVanityDomain,
-                               let appId = authenticationViewModel.appId,
                                let currentUser = usersViewModel.currentUser,
                                let tenantId = currentUser.tenantId  {
                                 await inviteUserViewModel.inviteUser(appVanityDomain: appVanityDomain, token: token, tenantId: tenantId, email: inviteUserViewModel.emailText.lowercased(), rolesToBeAssign: [selectedRole.id])

@@ -1,10 +1,10 @@
 import SwiftUI
 
-struct WristbandTouchPointView: View {
+struct PoweredByWristbandView: View {
    
     
     var body: some View {
-        Text("Wristband Touchpoint")
+        Text("Powered by Wristband")
             .font(.system(size: 14))
             .bold()
             .padding(6)
@@ -17,6 +17,6 @@ struct WristbandTouchPointView: View {
 
 struct WristbandTouchPointView_Previews: PreviewProvider {
     static var previews: some View {
-        return WristbandTouchPointView()     
+        return PoweredByWristbandView()     
     }
 }
