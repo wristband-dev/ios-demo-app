@@ -9,9 +9,11 @@ struct InvoicesView: View {
                 CreateInvoiceView()
                     .environmentObject(invoiceViewModel)
                 if !invoiceViewModel.invoices.isEmpty {
-                    Divider()
-                    AllInvoicesView()
-                        .environmentObject(invoiceViewModel)
+                    VStack (spacing: 0) {
+                        Divider()
+                        AllInvoicesView()
+                            .environmentObject(invoiceViewModel)
+                    }
                 } else {
                     Spacer()
                 }
@@ -70,8 +72,9 @@ struct InvoicesView: View {
         
         var body: some View {
             VStack {
-                SubHeaderView(subHeader: "All Invoices")
                 ScrollView {
+                    SubHeaderView(subHeader: "All Invoices")
+                        .padding(.top)
                     ForEach(invoiceViewModel.invoices) { invoice in
                         HStack {
                             VStack {
