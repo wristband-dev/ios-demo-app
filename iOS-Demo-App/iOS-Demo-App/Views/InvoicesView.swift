@@ -2,20 +2,30 @@ import SwiftUI
 
 struct InvoicesView: View {
     @StateObject var invoiceViewModel = InvoiceViewModel()
-    
+    @EnvironmentObject var usersViewModel: UsersViewModel
+
     var body: some View {
         VStack {
             VStack (spacing: 20) {
-                CreateInvoiceView()
-                    .environmentObject(invoiceViewModel)
-                if !invoiceViewModel.invoices.isEmpty {
-                    VStack (spacing: 0) {
-                        Divider()
+                if usersViewModel.isAdmin {
+                    CreateInvoiceView()
+                        .environmentObject(invoiceViewModel)
+                }
+                VStack (spacing: 0) {
+                    if !invoiceViewModel.invoices.isEmpty {
+                        if usersViewModel.isAdmin {
+                            Divider()
+                                .padding(.bottom)
+                        }
                         AllInvoicesView()
                             .environmentObject(invoiceViewModel)
+                    } else {
+                        Text("No Invoices")
+                            .bold()
+                            .italic()
+                            .foregroundColor(CustomColors.invoBlue)
+                        Spacer()
                     }
-                } else {
-                    Spacer()
                 }
             }
             .padding()
@@ -74,7 +84,6 @@ struct InvoicesView: View {
             VStack {
                 ScrollView {
                     SubHeaderView(subHeader: "All Invoices")
-                        .padding(.top)
                     ForEach(invoiceViewModel.invoices) { invoice in
                         HStack {
                             VStack {
@@ -139,8 +148,14 @@ struct InvoicesView: View {
 
 struct InvoicesView_Previews: PreviewProvider {
     static var previews: some View {
+        let usersViewModel = UsersViewModel()
+        
+        usersViewModel.currentUser = User(id: "1", appId: "1", email: "fddiferd@gmail.com", emailVerified: true, givenName: "Donato", familyName: "DiFerdinando", middleName: "", nickname: nil, pictureUrl: nil, gender: nil, birthdate: nil, locale: "US", timezone: nil, identityProviderName: nil, tenantId: nil, updatedAt: nil)
+        usersViewModel.isAdmin = false
+        
         return NavigationStack {
             InvoicesView()
+                .environmentObject(usersViewModel)
         }
     }
 }
