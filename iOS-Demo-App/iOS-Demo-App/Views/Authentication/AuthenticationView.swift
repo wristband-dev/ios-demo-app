@@ -17,7 +17,7 @@ struct AuthenticationView: View {
         .onAppear {
             Task {
                 await authenticationViewModel.getStoredToken()
-                
+                await authenticationViewModel.getStoredTenantDomainName()
             }
         }
     }

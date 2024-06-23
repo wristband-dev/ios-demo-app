@@ -2,18 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>APPLICATION_ID</key>
-	<string>4fxa5frqwrehll2h2wt4ykbrk4</string>
 	<key>APPLICATION_VANITY_DOMAIN</key>
-	<string>iosdemoapp-donato.us.wristband.dev</string>
+	<string>invob2b77tf2sotojkun-donato.us.wristband.dev</string>
 	<key>CLIENT_ID</key>
-	<string>mlnp6h6nwrdd3ptqfvsi6pbieu</string>
+	<string>vbbdjfmq6beq5ngdx3wwpf53qa</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>iosdemoapp</string>
+				<string>mobiledemoapp</string>
 			</array>
 		</dict>
 	</array>

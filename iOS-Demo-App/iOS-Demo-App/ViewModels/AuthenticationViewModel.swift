@@ -10,15 +10,15 @@ class AuthenticationViewModel: ObservableObject {
     @Published var errorMsg: String?
     
     // Info.plsy
-    @Published var appId: String?
     @Published var appVanityDomain: String?
     @Published var clientId: String?
     
     // Login Browser
     @Published var showAppLoginBrowser = false
     @Published var showTenantLoginBrowser = false
+    @Published var showSignUpBrowser = false
     @Published var tenantDomainName: String?
-    @Published var loginHint: String?
+    @Published var tenantId: String?
     
     // Logout Browser
     @Published var showLogOutBrowser = false
@@ -43,7 +43,6 @@ class AuthenticationViewModel: ObservableObject {
     
     
     func getInfoDictValues() {
-        self.appId = Bundle.main.infoDictionary?["APPLICATION_ID"] as? String
         self.appVanityDomain = Bundle.main.infoDictionary?["APPLICATION_VANITY_DOMAIN"] as? String
         self.clientId = Bundle.main.infoDictionary?["CLIENT_ID"] as? String
     }
@@ -55,6 +54,10 @@ class AuthenticationViewModel: ObservableObject {
         let _ = await getToken()
         
         self.isLoading = false
+    }
+    
+    func getStoredTenantDomainName() async {
+        self.tenantDomainName = await KeychainService.shared.getTenantDomainName()  
     }
     
     
@@ -83,7 +86,7 @@ class AuthenticationViewModel: ObservableObject {
     // WRISTBAND_TOUCHPOINT - get redirect url
     func handleRedirectUri(url: URL) async {
         
-        guard url.scheme == "iosdemoapp" else {
+        guard url.scheme == "mobiledemoapp" else {
             return
         }
 
@@ -101,6 +104,7 @@ class AuthenticationViewModel: ObservableObject {
                 
                 // get info from login
                 self.tenantDomainName = tenantDomain
+                KeychainService.shared.saveTenantDomainName(tenantDomainName: tenantDomain)
                 
                 // clear token response incase the login is redirected from invite
                 self.tokenResponse = nil
@@ -111,7 +115,7 @@ class AuthenticationViewModel: ObservableObject {
             }
             
             if let loginHint = components?.queryItems?.first(where: { $0.name == "login_hint" })?.value {
-                self.loginHint = loginHint
+                self.tenantId = loginHint
             }
             
         // on login callback or invite user
@@ -132,6 +136,7 @@ class AuthenticationViewModel: ObservableObject {
             
             // clear stored token
             KeychainService.shared.deleteToken()
+            KeychainService.shared.deleteTenantDomainName()
             
             // return to main path
             self.path.removeLast(self.path.count)

@@ -13,13 +13,16 @@ class UsersViewModel: ObservableObject {
     
     @Published var users: [User] = []
  
-    func loadCurrentUser(appVanityDomain: String, token: String) async {
+    func loadCurrentUser(appVanityDomain: String, token: String) async -> String? {
         do {
             // WRISTBAND_TOUCHPOINT
-            self.currentUser = try await UsersService.shared.getCurrentUser(appVanityDomain: appVanityDomain, token:token)
+            let user = try await UsersService.shared.getCurrentUser(appVanityDomain: appVanityDomain, token:token)
+            self.currentUser = user
+            return user.tenantId
         } catch {
             print("Unable to load current user: \(error)")
         }
+        return nil
     }
     
     func updateCurrentUser(updatedUser: UpdateUserBody) async {
@@ -34,6 +37,6 @@ class UsersViewModel: ObservableObject {
             self.isAdmin = false
             return
         }
-        self.isAdmin = roles.contains { $0.displayName == "owner" }
+        self.isAdmin = roles.contains { $0.displayName.lowercased() == "owner" }
     }
 }

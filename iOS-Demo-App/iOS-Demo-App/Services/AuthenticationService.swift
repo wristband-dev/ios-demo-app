@@ -16,7 +16,7 @@ final class AuthenticationService {
         request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
-        let postString = "grant_type=authorization_code&client_id=\(clientId)&code_verifier=\(codeVerifier)&code=\(authCode)&redirect_uri=iosdemoapp%3A%2F%2Fcallback"
+        let postString = "grant_type=authorization_code&client_id=\(clientId)&code_verifier=\(codeVerifier)&code=\(authCode)&redirect_uri=mobiledemoapp%3A%2F%2Fcallback"
         
         request.httpBody = postString.data(using: .utf8)
         

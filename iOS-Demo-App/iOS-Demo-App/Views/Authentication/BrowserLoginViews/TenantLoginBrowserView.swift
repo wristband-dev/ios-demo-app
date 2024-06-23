@@ -16,10 +16,10 @@ struct TenantLoginBrowserView: UIViewControllerRepresentable {
            let nonce = authenticationViewModel.nonce
             {
             
-            var urlString = "https://\(tenantDomainName)-\(appVanityDomain)/api/v1/oauth2/authorize?client_id=\(clientId)&response_type=code&redirect_uri=iosdemoapp%3A%2F%2Fcallback&state=\(state)&nonce=\(nonce)&scope=roles+openid+offline_access+profile+email+phone&code_challenge=\(codeChallenge)&code_challenge_method=S256"
+            var urlString = "https://\(tenantDomainName)-\(appVanityDomain)/api/v1/oauth2/authorize?client_id=\(clientId)&response_type=code&redirect_uri=mobiledemoapp%3A%2F%2Fcallback&state=\(state)&nonce=\(nonce)&scope=roles+openid+offline_access+profile+email+phone&code_challenge=\(codeChallenge)&code_challenge_method=S256"
             
-            if let loginHint = authenticationViewModel.loginHint {
-                urlString.append("&login_hint=\(loginHint)")
+            if let tenantId = authenticationViewModel.tenantId {
+                urlString.append("&login_hint=\(tenantId)")
             }
             
             // Check if the URL is valid

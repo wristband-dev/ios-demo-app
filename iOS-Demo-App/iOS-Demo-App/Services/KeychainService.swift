@@ -50,4 +50,32 @@ final class KeychainService {
             }
         }
     }
+    
+    func saveTenantDomainName(tenantDomainName: String) {
+        do {
+            try keychain.set(tenantDomainName, key: "tenant_domain_name")
+        } catch let error {
+            print("Error saving tenant domain name: \(error)")
+        }
+    }
+    
+    func getTenantDomainName() async -> String? {
+        do {
+            if let tenantDomainName = try keychain.get("tenant_domain_name") {
+                return tenantDomainName
+            }
+        } catch let error {
+            print("Error saving tenant domain name: \(error)")
+        }
+        return nil
+    }
+    
+    func deleteTenantDomainName() {
+        do {
+            try keychain.remove("tenant_domain_name")
+        } catch let error {
+            print("Error removing tenant domain name: \(error)")
+        }
+    }
+    
 }

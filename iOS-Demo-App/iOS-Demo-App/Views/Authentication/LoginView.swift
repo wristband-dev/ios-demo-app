@@ -7,8 +7,7 @@ struct LoginView: View {
     var body: some View {
         VStack {
             
-            VStack {
-                PoweredByWristbandView()
+            VStack (spacing: 32) {
                 Button {
                     if authenticationViewModel.tenantDomainName == nil {
                         authenticationViewModel.showAppLoginBrowser = true
@@ -31,6 +30,23 @@ struct LoginView: View {
                 .sheet(isPresented: $authenticationViewModel.showTenantLoginBrowser) {
                     TenantLoginBrowserView()
                 }
+                Button {
+                    authenticationViewModel.showSignUpBrowser = true
+                } label: {
+                    Text("Sign Up")
+                        .font(.title)
+                        .bold()
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .foregroundColor(.white)
+                        .background(CustomColors.invoBlue)
+                        .cornerRadius(8)
+                }
+                .sheet(isPresented: $authenticationViewModel.showSignUpBrowser) {
+                    SignUpBrowserView()
+                }
+                Spacer()
+                PoweredByWristbandView()
             }
             .padding([.trailing, .leading])
             

@@ -11,7 +11,7 @@ struct ContentView: View {
         .onAppear {
             Task {
                 if let token = await authenticationViewModel.getToken(), let appVanityDomain = authenticationViewModel.appVanityDomain {
-                    await usersViewModel.loadCurrentUser(appVanityDomain: appVanityDomain, token: token)
+                    authenticationViewModel.tenantId = await usersViewModel.loadCurrentUser(appVanityDomain: appVanityDomain, token: token)
                 }
             }
         }
