@@ -21,80 +21,48 @@
 
 <br/>
 
-# Wristband iOS Demo App
 
-A demo app for iOS to showcase how the wristband service interacts with the iOS demo app workflow
+# Mobile Demo App Instructions
 
-## Getting Started
+## Configure Wristband Demo App Dashboard
 
-These instructions will guide you on how to set up your environment to run the `user-export` script successfully.
+1. **Choose Application Architecture**: B2B
+![Clone Repository](readme-images/choose_application_architecture.png)
 
-### Set Up Your Environment
+2. **Choose Subject to Authenticate**: Humans
+![Clone Repository](readme-images/choose_subject_to_authenticate.png)
 
-> [!NOTE]
-> If you haven't already, ensure that <ins>[pip3](https://en.wikipedia.org/wiki/Pip_(package_manager))</ins> is installed on your machine before going further.
+3. **Select Backend Server**: iOS
+![Clone Repository](readme-images/choose_subject_to_authenticate.png)
 
-To prepare your environment, follow these steps:
+4. **Choose URL Type**: Custom Scheme / No Host
+![Clone Repository](readme-images/choose_url_type.png)
 
-1. **Navigate to your project directory:**
+5. **Demo App Preview**: Create
+![Clone Repository](readme-images/demo_app_preview.png)
 
-    ```bash
-    cd path/to/your/project-directory
-    ```
 
-2. **Install `virtualenv` if you haven't already:**
+## Clone GitHub Repo
 
-    ```bash
-    pip3 install virtualenv
-    ```
+1. **Open Xcode**  
+   If you haven't yet installed Xcode, follow these instructions: [Install Xcode](https://developer.apple.com/xcode/)
 
-3. **Create and activate a virtual environment:**
+2. **Clone GitHub Repository**  
+   Clone the repository from the following link: [Wristband B2B iOS Demo App](https://github.com/wristband-dev/b2b-ios-demo-app.git)
+   ![Clone Repository](readme-images/xcode.png)
 
-    ```bash
-    python3 -m venv myvenv
-    source myvenv/bin/activate
-    ```
+3. **Add Values to Info.plist**  
+   Add the following values to the `Info.plist` file in the navigation tree. These values can be found in the Wristband dashboard:
+   - **Application Vanity Domain**: Located in application settings
+   - **Client ID**: Located in OAuth2 clients
+![Clone Repository](readme-images/info_plst.png)
 
-4. **Install the required packages:**
+4. **Run the App**  
+   - Select the play button to build the app.
+   - Sign up or log in.
+   - Once in the app, admins will be able to create invoices and access the admin portal to invite users.
+   - All users will be able to change their profile (birthday, first name, last name, reset password, etc.).
 
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-## Configuration
-
-Before running the script, you need to configure it with your application details, which can be found in the <ins>[Wristband Dashboard](https://wristband.stoplight.io/docs/documentation/bx365vbe3m1dy-application-settings-application-level)</ins>:
-
-1. **Add your `application_vanity_domain` & `application_id`:**
-   
-    - These can be found in your application's "Settings" page.
-
-2. **Add your `client_id` & `client_secret`:**
-   
-    - Instructions for obtaining these credentials can be found in the <ins>[Getting Access Tokens documentation](https://wristband.stoplight.io/docs/documentation/u236uoxf36sxp-getting-access-tokens-to-test-ap-is)</ins>.
-
-## Usage
-
-To export users into a CSV file, execute the `run.py` script. This will generate a CSV file in your project directory containing the tenant user information.
-
-### Option 1: Execute the run.py
-
-- Once executed, you will be prompted with parameters to enter:
-
-```bash
-python run.py
-```
-
-### Option 2: Execute the run.py with values passed in 
-
-```bash
-python run.py \
-    --app_vanity_domain name.us.wristband.dev \
-    --app_id appId \
-    --client_id clientId \
-    --client_secret clientSecret \
-    --file_name users
-```
 
 <br/>
 
