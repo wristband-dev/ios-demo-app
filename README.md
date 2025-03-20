@@ -26,21 +26,25 @@
 
 ## Configure Wristband Demo App Dashboard
 
-1. **Choose Application Architecture**: B2B
-![Clone Repository](readme-images/choose_application_architecture.png)
-
-2. **Choose Subject to Authenticate**: Humans
+1. **Choose Subject to Authenticate**: Humans
 ![Clone Repository](readme-images/choose_subject_to_authenticate.png)
 
-3. **Select Backend Server**: iOS
-![Clone Repository](readme-images/choose_subject_to_authenticate.png)
+<br>
 
-4. **Choose URL Type**: Custom Scheme / No Host
+2. **Select Client Type**: iOS
+![Clone Repository](readme-images/select_client_type.png)
+
+<br>
+
+3. **Choose URL Type**: Custom Scheme / No Host
 ![Clone Repository](readme-images/choose_url_type.png)
 
-5. **Demo App Preview**: Create
+<br>
+
+4. **Demo App Preview**: Create
 ![Clone Repository](readme-images/demo_app_preview.png)
 
+<br>
 
 ## Clone GitHub Repo
 
