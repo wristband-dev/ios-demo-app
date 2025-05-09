@@ -26,25 +26,20 @@
 
 ## Configure Wristband Demo App Dashboard
 
-1. **Choose Subject to Authenticate**: Humans
+You can follow the [Demo App Guide](https://docs.wristband.dev/docs/setting-up-a-demo-app) for more information.
+
+1. **Choose Subject to Authenticate -> Humans**
 ![Clone Repository](readme-images/choose_subject_to_authenticate.png)
 
-<br>
+2. **Choose Application Framework -> iOS**
+![Clone Repository](readme-images/select_ios_framework.png)
 
-2. **Select Client Type**: iOS
-![Clone Repository](readme-images/select_client_type.png)
-
-<br>
-
-3. **Choose URL Type**: Custom Scheme / No Host
-![Clone Repository](readme-images/choose_url_type.png)
-
-<br>
-
-4. **Demo App Preview**: Create
+3. **Demo App Preview**
 ![Clone Repository](readme-images/demo_app_preview.png)
 
-<br>
+4. **Copy Info.plist Values**
+![Clone Repository](readme-images/copy_values.png)
+
 
 ## Clone GitHub Repo
 
@@ -52,7 +47,7 @@
    If you haven't yet installed Xcode, follow these instructions: [Install Xcode](https://developer.apple.com/xcode/)
 
 2. **Clone GitHub Repository**  
-   Clone the repository from the following link: [Wristband B2B iOS Demo App](https://github.com/wristband-dev/b2b-ios-demo-app.git)
+   Clone the repository from the following link: [Wristband iOS Demo App](https://github.com/wristband-dev/ios-demo-app.git)
    ![Clone Repository](readme-images/xcode.png)
 
 3. **Add Values to Info.plist**  
@@ -72,6 +67,6 @@
 
 ## Questions
 
-Reach out to the Wristband team at <support@wristband.dev> for any questions regarding this script.
+Reach out to the Wristband team at <support@wristband.dev> for any questions regarding this demo app.
 
 <br/>
